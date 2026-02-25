@@ -27,9 +27,11 @@ The app is divided into four main categories to cover all your conversion needs:
 - [Frankfurter API](https://www.frankfurter.app/) for reliable currency data.
 ## 📸 Screenshots
 
-| Currency Exchange                                                   | Weight                                       | Baking Measurements                                             |
-| :------------------------------------------------------------------ | :-------------------------------------------------------------- | :-------------------------------------------------------------- |
-| ![Currency]([https://via.placeholder.com/200x400?text=Currency+View](https://github.com/user-attachments/assets/c768d62e-652c-4ec3-a5bf-2d9c63c942b9)) | ![Weight]([https://via.placeholder.com/200x400?text=Weight+View](https://github.com/user-attachments/assets/993ad782-b50b-4cb9-8b9c-2e9306b6008b)) | ![Baking](https://github.com/user-attachments/assets/408086be-774d-482b-a305-0852e2d93b9e) |
+## 📸 Screenshots
+
+| Currency Exchange | Weight & Length | Baking Measurements |
+| :---: | :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/c768d62e-652c-4ec3-a5bf-2d9c63c942b9" width="200" /> | <img src="https://github.com/user-attachments/assets/993ad782-b50b-4cb9-8b9c-2e9306b6008b" width="200" /> | <img src="https://github.com/user-attachments/assets/408086be-774d-482b-a305-0852e2d93b9e" width="200" /> |
 
 _(Pro tip: Replace these placeholders with your actual screenshots by uploading them to your GitHub repository!)_
 
