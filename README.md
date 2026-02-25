@@ -20,7 +20,7 @@ The app is divided into four main categories to cover all your conversion needs:
 - **Error Handling:** Robust logic to handle empty inputs and API edge cases.
 
 ## 🛠 Tech Stack
-
+- TypeScript 
 - [React Native](https://reactnative.dev/) & [Expo](https://expo.dev/)
 - [React Native Element Dropdown](https://github.com/hoaphantn7604/react-native-element-dropdown)
 - [Frankfurter API](https://www.frankfurter.app/) for reliable currency data.
