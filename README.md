@@ -36,7 +36,6 @@ The app is divided into four main categories to cover all your conversion needs:
 | :---: | :---: | :---: | :---: |
 | <img src="https://github.com/user-attachments/assets/c768d62e-652c-4ec3-a5bf-2d9c63c942b9" width="200" /> | <img src="https://github.com/user-attachments/assets/993ad782-b50b-4cb9-8b9c-2e9306b6008b" width="200" /> | <img src="https://github.com/user-attachments/assets/d58cd244-741c-4409-9bb6-95ec2cb018f9" width="200" /> | <img src="https://github.com/user-attachments/assets/408086be-774d-482b-a305-0852e2d93b9e" width="200" /> |
 
-_(Pro tip: Replace these placeholders with your actual screenshots by uploading them to your GitHub repository!)_
 
 ## 🛠 Installation & Setup
 
