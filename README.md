@@ -32,7 +32,7 @@ The app is divided into four main categories to cover all your conversion needs:
 
 ## 📸 Screenshots
 
-| Currency Exchange | Weight | Length | Baking Measurements |
+| Baking Measurements | Weight | Length | Currency Exchange |
 | :---: | :---: | :---: | :---: |
 | <img src="https://github.com/user-attachments/assets/2a66e2c0-d0a5-4936-91b6-87a8959e8844" width="200" /> | <img src="https://github.com/user-attachments/assets/12cb6b7b-7c4f-45c9-8e94-1a4998b520ac" width="200" /> | <img src="https://github.com/user-attachments/assets/d43a2b19-5974-45d7-a258-059e29184d02" width="200" /> | <img src="https://github.com/user-attachments/assets/a8b3fb9d-1225-4887-b092-dc5278fe9f4b" width="200" /> |
 
