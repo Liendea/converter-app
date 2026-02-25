@@ -30,11 +30,15 @@ The app is divided into four main categories to cover all your conversion needs:
 
 
 
+
 ## 📸 Screenshots
 
 | Currency Exchange | Weight | Length | Baking Measurements |
 | :---: | :---: | :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/c768d62e-652c-4ec3-a5bf-2d9c63c942b9" width="200" /> | <img src="https://github.com/user-attachments/assets/993ad782-b50b-4cb9-8b9c-2e9306b6008b" width="200" /> | <img src="https://github.com/user-attachments/assets/d58cd244-741c-4409-9bb6-95ec2cb018f9" width="200" /> | <img src="https://github.com/user-attachments/assets/408086be-774d-482b-a305-0852e2d93b9e" width="200" /> |
+| <img width="590" height="1278" alt="IMG_4760" src="https://github.com/user-attachments/assets/2a66e2c0-d0a5-4936-91b6-87a8959e8844" /> |
+<img width="590" height="1278" alt="IMG_4763" src="https://github.com/user-attachments/assets/d43a2b19-5974-45d7-a258-059e29184d02" /> |
+<img width="590" height="1278" alt="IMG_4762" src="https://github.com/user-attachments/assets/a8b3fb9d-1225-4887-b092-dc5278fe9f4b" /> |
+<img width="590" height="1278" alt="IMG_4761" src="https://github.com/user-attachments/assets/12cb6b7b-7c4f-45c9-8e94-1a4998b520ac" /> |
 
 
 ## 🛠 Installation & Setup
