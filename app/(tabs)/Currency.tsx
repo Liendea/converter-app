@@ -67,7 +67,7 @@ export default function CurrencyScreen() {
     const getConversion = async () => {
       // 1. Tömmer användaren fältet? Nollställ allt direkt.
       if (!amount || amount.trim() === "") {
-        setResult(null); // Eller "0" om du föredrar det
+        setResult(null);
         setLoading(false);
         return;
       }

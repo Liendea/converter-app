@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 20,
     width: "100%",
-    // Lite skugga för att få den att "poppa"
+
     elevation: 4,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },

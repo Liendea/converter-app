@@ -32,7 +32,7 @@ export default function ConvertCard({
   unitTwoList,
   colors,
 }: ConvertCardProps) {
-  const [activeUnit, setActiveUnit] = useState(unitOne.value); // Startar med unitOne som aktiv);
+  const [activeUnit, setActiveUnit] = useState(unitOne.value);
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState<ConversionResults>({});
 
@@ -44,7 +44,7 @@ export default function ConvertCard({
       setResults({});
       return;
     }
-    // Här ändrar vi så att vi hanterar både vanliga funktioner och API-anrop
+
     const calculate = async () => {
       const res = await onConvert(num, activeUnit);
       setResults(res);
@@ -120,8 +120,8 @@ export default function ConvertCard({
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%", // Se till att den tar upp bredden
-    maxWidth: 400, // Valfritt: hindrar appen från att bli för bred på stora skärmar
+    width: "100%",
+
     padding: 20,
     borderRadius: 20,
   },

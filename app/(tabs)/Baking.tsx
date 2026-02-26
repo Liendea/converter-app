@@ -17,7 +17,6 @@ const colors = {
   buttonActiveBorderColor: "#936B89",
 };
 
-// Lägg dessa utanför själva komponenten
 const CUPS_UNITS = ["dl", "liter", "cl", "ml", "tablespoon", "teaspoon"];
 const DL_UNITS = ["cup", "gallon", "quarts", "pint", "oz"];
 
@@ -32,9 +31,6 @@ export default function BakingScreen() {
     const sanitizedInput = inputValue.replace(",", ".");
     const num = parseFloat(sanitizedInput);
 
-    // Vi kollar om sista tecknet är en punkt eller ett komma.
-    // Om det är det, vill vi inte nollställa results än,
-    // eftersom användaren håller på att skriva decimalerna (t.ex. "1.")
     if (sanitizedInput.endsWith(".") || isNaN(num)) {
       // Vi behåller nuvarande resultat eller låter dem vara om input är helt tom
       if (inputValue === "") setResults({});
