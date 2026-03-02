@@ -1,14 +1,11 @@
-import ConvertCard from "@/components/ConvertCard";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ImageBackground, ScrollView, StyleSheet } from "react-native";
-import {
-  ConversionResults,
-  convertFromCups,
-  convertFromDl,
-} from "../../utils/conversions";
+import NewConvertCard from "@/components/NewConvertCard";
+import { convertUnits } from "@/utils/Convertunits";
+import { UNIT_RATIOS } from "@/utils/unitRatios";
 
 // FÄRGSCHEMA FÖR BAKINGTABBEN
-const colors = {
+const baking_colors = {
   backgroundColor: "rgba(251, 236, 229, 0.80)",
   resultColor: "rgba(147, 107, 137, 0.8)",
   buttonColor: "#EDE7E4",
@@ -17,37 +14,18 @@ const colors = {
   buttonActiveBorderColor: "#936B89",
 };
 
-const CUPS_UNITS = ["dl", "liter", "cl", "ml", "tablespoon", "teaspoon"];
-const DL_UNITS = ["cup", "gallon", "quarts", "pint", "oz"];
-
 export default function BakingScreen() {
-  const [activeUnit, setActiveUnit] = useState<"cups" | "dl">("cups");
-  const [inputValue, setInputValue] = useState("");
-  const [results, setResults] = useState<ConversionResults>({});
+  const [amount, setAmount] = useState("");
+  const [fromUnit, setFromUnit] = useState("cups");
+  const [toUnit, setToUnit] = useState("dl");
 
-  // Körs varje gång inputValue eller activeUnit ändras
-  useEffect(() => {
-    // Ersätt komma med punkt så att parseFloat förstår måttet
-    const sanitizedInput = inputValue.replace(",", ".");
-    const num = parseFloat(sanitizedInput);
+  // DERIVED STATE: Räknas ut vid varje knapptryck/ändring
+  const convertedValue = convertUnits(amount, "baking", fromUnit, toUnit);
 
-    if (sanitizedInput.endsWith(".") || isNaN(num)) {
-      // Vi behåller nuvarande resultat eller låter dem vara om input är helt tom
-      if (inputValue === "") setResults({});
-      return;
-    }
-
-    if (activeUnit === "dl") {
-      setResults(convertFromDl(num));
-    } else {
-      setResults(convertFromCups(num));
-    }
-  }, [inputValue, activeUnit]);
-
-  const handleUnitChange = (unit: "cups" | "dl") => {
-    setActiveUnit(unit); // Byt enhet
-    setInputValue(""); // Tömmer fältet
-  };
+  const units = Object.keys(UNIT_RATIOS.baking).map((key) => ({
+    label: key,
+    value: key,
+  }));
 
   return (
     <ImageBackground
@@ -59,22 +37,14 @@ export default function BakingScreen() {
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
-        <ConvertCard
-          unitOne={{ label: "Cups", value: "cups" }}
-          unitTwo={{ label: "Deciliter", value: "dl" }}
-          unitOneList={["teaspoon", "tablespoon", "ml", "dl", "cl", "liter"]}
-          unitTwoList={["oz", "cup", "pint", "quarts", "gallon"]}
-          onConvert={(num, unit) =>
-            unit === "cups" ? convertFromCups(num) : convertFromDl(num)
-          }
-          colors={colors}
-        />
+        <NewConvertCard category="length" colors={baking_colors} />
       </ScrollView>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  // Bakgrund
   backgroundImage: {
     flex: 1,
     width: "100%",

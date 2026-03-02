@@ -1,0 +1,89 @@
+import Dropdowns from "@/components/Dropdowns";
+import NewResultatCard from "@/components/NewResultCard";
+import { UNIT_RATIOS } from "@/utils/unitRatios";
+import React, { useState } from "react";
+import { StyleSheet, TextInput, View } from "react-native";
+
+type NewConvertCardProps = {
+  category: keyof typeof UNIT_RATIOS; // "baking", "weight" eller "length"
+  colors: {
+    backgroundColor: string;
+    resultColor: string;
+    buttonColor: string;
+    buttonBorderColor: string;
+    buttonActiveColor: string;
+    buttonActiveBorderColor: string;
+  };
+};
+export default function NewConvertCard({
+  category,
+  colors,
+}: NewConvertCardProps) {
+  const [amount, setAmount] = useState("");
+  const [fromUnit, setFromUnit] = useState("");
+  const [toUnit, setToUnit] = useState("");
+
+  const unitData = UNIT_RATIOS[category];
+  const unitKeys = Object.keys(unitData);
+
+  // Skapa listan för dropdownen
+  const dropdownUnits = unitKeys.map((key) => ({
+    label: key,
+    value: key,
+  }));
+
+  return (
+    <View
+      style={[styles.container, { backgroundColor: colors.backgroundColor }]}
+    >
+      <Dropdowns
+        units={dropdownUnits}
+        colors={colors}
+        fromUnit={fromUnit}
+        toUnit={toUnit}
+        onFromChange={setFromUnit}
+        onToChange={setToUnit}
+      />
+
+      <TextInput
+        style={[styles.input, { borderColor: colors.buttonBorderColor }]}
+        placeholder={`Enter units of ${fromUnit}...`}
+        keyboardType="decimal-pad"
+        value={amount}
+        onChangeText={setAmount} // Uppdaterar state direkt
+        placeholderTextColor="#0000008a"
+      />
+
+      <NewResultatCard
+        amount={amount}
+        fromUnit={fromUnit}
+        category={category}
+        units={unitKeys}
+        backgroundColor={colors.resultColor}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    padding: 20,
+    borderRadius: 20,
+  },
+  label: {
+    textAlign: "center",
+    fontSize: 18,
+    marginBottom: 10,
+    fontWeight: "400",
+  },
+  input: {
+    width: "100%",
+    textAlign: "center",
+    borderWidth: 1,
+    padding: 15,
+    borderRadius: 50,
+    fontSize: 16,
+    backgroundColor: "#fff",
+  },
+});

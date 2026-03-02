@@ -1,9 +1,11 @@
-import ArrowIcon from "@/components/ArrowIcon";
 import { fetchExchangeRates } from "@/utils/CurrencyApi";
+import { data } from "@/utils/CurrencyData";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   ImageBackground,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -21,40 +23,6 @@ const colors = {
   buttonActiveColor: "#866308",
   buttonActiveBorderColor: "#866308",
 };
-
-const data = [
-  { label: "Australian Dollar", value: "AUD", flag: "🇦🇺" },
-  { label: "Bulgarian Lev", value: "BGN", flag: "🇧🇬" },
-  { label: "Brazilian Real", value: "BRL", flag: "🇧🇷" },
-  { label: "Canadian Dollar", value: "CAD", flag: "🇨🇦" },
-  { label: "Swiss Franc", value: "CHF", flag: "🇨🇭" },
-  { label: "Chinese Yuan", value: "CNY", flag: "🇨🇳" },
-  { label: "Czech Koruna", value: "CZK", flag: "🇨🇿" },
-  { label: "Danish Krone", value: "DKK", flag: "🇩🇰" },
-  { label: "Euro", value: "EUR", flag: "🇪🇺" },
-  { label: "British Pound", value: "GBP", flag: "🇬🇧" },
-  { label: "Hong Kong Dollar", value: "HKD", flag: "🇭🇰" },
-  { label: "Hungarian Forint", value: "HUF", flag: "🇭🇺" },
-  { label: "Indonesian Rupiah", value: "IDR", flag: "🇮🇩" },
-  { label: "Israeli New Shekel", value: "ILS", flag: "🇮🇱" },
-  { label: "Indian Rupee", value: "INR", flag: "🇮🇳" },
-  { label: "Icelandic Króna", value: "ISK", flag: "🇮🇸" },
-  { label: "Japanese Yen", value: "JPY", flag: "🇯🇵" },
-  { label: "South Korean Won", value: "KRW", flag: "🇰🇷" },
-  { label: "Mexican Peso", value: "MXN", flag: "🇲🇽" },
-  { label: "Malaysian Ringgit", value: "MYR", flag: "🇲🇾" },
-  { label: "Norwegian Krone", value: "NOK", flag: "🇳🇴" },
-  { label: "New Zealand Dollar", value: "NZD", flag: "🇳🇿" },
-  { label: "Philippine Peso", value: "PHP", flag: "🇵🇭" },
-  { label: "Polish Złoty", value: "PLN", flag: "🇵🇱" },
-  { label: "Romanian Leu", value: "RON", flag: "🇷🇴" },
-  { label: "Swedish Krona", value: "SEK", flag: "🇸🇪" },
-  { label: "Singapore Dollar", value: "SGD", flag: "🇸🇬" },
-  { label: "Thai Baht", value: "THB", flag: "🇹🇭" },
-  { label: "Turkish Lira", value: "TRY", flag: "🇹🇷" },
-  { label: "US Dollar", value: "USD", flag: "🇺🇸" },
-  { label: "South African Rand", value: "ZAR", flag: "🇿🇦" },
-];
 
 export default function CurrencyScreen() {
   const [amount, setAmount] = useState("1");
@@ -121,41 +89,36 @@ export default function CurrencyScreen() {
 
           <View style={styles.btnContainer}>
             <Dropdown
-              style={styles.dropdown}
+              style={[styles.dropdown, styles.dropdownFromUnit]}
+              autoScroll={false}
+              iconColor="#fff"
+              selectedTextStyle={{ color: "#fff" }}
               data={data}
-              labelField="value"
+              labelField="display"
               valueField="value"
               value={fromUnit}
               onChange={(item) => setFromUnit(item.value)}
-              renderLeftIcon={() => {
-                // Hittar flaggan för den valda valutan
-                const item = data.find((d) => d.value === fromUnit);
-                return (
-                  <Text style={{ fontSize: 20, marginRight: 8 }}>
-                    {item ? item.flag : ""}
-                  </Text>
-                );
-              }}
             />
-
-            <ArrowIcon />
-
+            <Pressable
+              onPress={() => {
+                setFromUnit(toUnit);
+                setToUnit(fromUnit);
+              }}
+            >
+              <MaterialCommunityIcons
+                name="swap-horizontal"
+                size={24}
+                color="black"
+              />
+            </Pressable>
             <Dropdown
               style={styles.dropdown}
+              autoScroll={false}
               data={data}
-              labelField="value"
+              labelField="display"
               valueField="value"
               value={toUnit}
               onChange={(item) => setToUnit(item.value)}
-              renderLeftIcon={() => {
-                // Hittar flaggan för den valda valutan
-                const item = data.find((d) => d.value === toUnit);
-                return (
-                  <Text style={{ fontSize: 20, marginRight: 8 }}>
-                    {item ? item.flag : ""}
-                  </Text>
-                );
-              }}
             />
           </View>
           <TextInput
@@ -164,9 +127,9 @@ export default function CurrencyScreen() {
             value={amount}
             onChangeText={setAmount}
             placeholder="Enter amount..."
-            placeholderTextColor="#000000"
+            placeholderTextColor="#0000008a"
           />
-
+          {/* RESULTAT KORT */}
           <View style={[styles.resultContainer]}>
             {/* Header */}
             <View style={styles.resultRow}>
@@ -182,15 +145,12 @@ export default function CurrencyScreen() {
               </View>
             )}
           </View>
-
-          {/*  extra info-sektion 
           <View style={styles.infoSection}>
-            <Text style={styles.infoTitle}>About {toUnit}</Text>
+            <Text style={styles.infoTitle}>Info</Text>
             <Text style={styles.infoBody}>
-              Rolig fakta eller statistik om valutan du har valt.
+              Valutan uppdateras en gång om dagen (runt kl. 16:00 CET).
             </Text>
           </View>
-          */}
         </View>
       </ScrollView>
     </ImageBackground>
@@ -242,30 +202,32 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 15,
     borderRadius: 50,
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 20,
     width: "100%",
-    textAlign: "center",
     borderWidth: 1,
     borderColor: "#866308",
   },
 
   dropdown: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#EDE7E4",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 50,
     borderWidth: 2,
     borderColor: "#866308",
   },
+  dropdownFromUnit: {
+    backgroundColor: "#866308",
+    borderColor: "#866308",
+  },
 
   resultContainer: {
-    marginTop: 30,
+    marginTop: 10,
     borderRadius: 15,
     padding: 20,
     width: "100%",
-    // Lite skugga för att få den att "poppa"
     elevation: 4,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },

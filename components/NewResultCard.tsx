@@ -1,21 +1,25 @@
+import { convertUnits } from "@/utils/Convertunits";
+import { UNIT_RATIOS } from "@/utils/unitRatios";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-type ResultatCardProps = {
-  results: { [key: string]: string };
-  units: string[];
-  backgroundColor?: string; // Valfri, annars används standard
-  accentColor?: string; // För rubriker/linjer
+type NewResultatCardProps = {
+  amount: string; // Det användaren skrivit in (t.ex. "2")
+  fromUnit: string; // Enheten användaren valt (t.ex. "cups")
+  category: keyof typeof UNIT_RATIOS; // "baking", "weight" eller "length"
+  units: string[]; // Alla enheter som ska listas (t.ex. ["dl", "ml", "oz"])
+  backgroundColor?: string;
   textColor?: string;
 };
 
-export default function ResultatCard({
-  results,
+export default function NewResultatCard({
+  amount,
+  fromUnit,
+  category,
   units,
-  backgroundColor = "rgba(147, 107, 137, 0.8)",
-  accentColor = "#936b89c4",
-  textColor = "#fff",
-}: ResultatCardProps) {
+  backgroundColor,
+  textColor,
+}: NewResultatCardProps) {
   return (
     <View style={[styles.resultContainer, { backgroundColor }]}>
       {/* Header */}
@@ -25,14 +29,17 @@ export default function ResultatCard({
       </View>
 
       {/* Rader baserat på inskickade units */}
-      {units.map((unit) => (
-        <View key={unit} style={styles.resultRow}>
-          <Text style={styles.unitText}>{unit}</Text>
-          <Text style={styles.valText}>
-            {results[unit] ? results[unit] : "-"}
-          </Text>
-        </View>
-      ))}
+      {units.map((toUnit) => {
+        // Räkna ut värdet för just denna rad
+        const convertedValue = convertUnits(amount, category, fromUnit, toUnit);
+
+        return (
+          <View key={toUnit} style={styles.resultRow}>
+            <Text style={styles.unitText}>{toUnit}</Text>
+            <Text style={styles.valText}>{convertedValue || "0"}</Text>
+          </View>
+        );
+      })}
     </View>
   );
 }
@@ -43,7 +50,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 20,
     width: "100%",
-
     elevation: 4,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },

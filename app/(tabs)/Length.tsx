@@ -1,9 +1,11 @@
-import ConvertCard from "@/components/ConvertCard";
-import { convertFromFeet, convertFromMeter } from "@/utils/conversions";
+import NewConvertCard from "@/components/NewConvertCard";
+import { convertUnits } from "@/utils/Convertunits";
+import { UNIT_RATIOS } from "@/utils/unitRatios";
+import React, { useState } from "react";
 import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 
 // FÄRGSCHEMA FÖR LENGTHTABBEN
-const colors = {
+const length_colors = {
   backgroundColor: "rgba(251, 236, 229, 0.80)",
   resultColor: "#716FFF",
   buttonColor: "#EDE7E4",
@@ -13,6 +15,18 @@ const colors = {
 };
 
 export default function Length() {
+  const [amount, setAmount] = useState("");
+  const [fromUnit, setFromUnit] = useState("cups");
+  const [toUnit, setToUnit] = useState("dl");
+
+  // DERIVED STATE: Räknas ut vid varje knapptryck/ändring
+  const convertedValue = convertUnits(amount, "length", fromUnit, toUnit);
+
+  const units = Object.keys(UNIT_RATIOS.length).map((key) => ({
+    label: key,
+    value: key,
+  }));
+
   return (
     <ImageBackground
       source={require("../../assets/images/bakgrund3.png")}
@@ -23,22 +37,14 @@ export default function Length() {
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
-        <ConvertCard
-          unitOne={{ label: "Feet", value: "feet" }}
-          unitTwo={{ label: "Meter", value: "meter" }}
-          unitOneList={["meter", "cm", "inches", "yards", "miles"]}
-          unitTwoList={["inches", "feet", "yards", "miles"]}
-          onConvert={(num, unit) =>
-            unit === "meter" ? convertFromMeter(num) : convertFromFeet(num)
-          }
-          colors={colors}
-        />
+        <NewConvertCard category="length" colors={length_colors} />
       </ScrollView>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  // Bakgrund
   backgroundImage: {
     flex: 1,
     width: "100%",
