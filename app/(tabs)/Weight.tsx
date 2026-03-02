@@ -1,7 +1,6 @@
 import NewConvertCard from "@/components/NewConvertCard";
-import { convertUnits } from "@/utils/Convertunits";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
-import React, { useState } from "react";
+import React from "react";
 import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 
 // FÄRGSCHEMA FÖR WEIGHTTABBEN
@@ -15,13 +14,6 @@ const weight_colors = {
 };
 
 export default function Length() {
-  const [amount, setAmount] = useState("");
-  const [fromUnit, setFromUnit] = useState("cups");
-  const [toUnit, setToUnit] = useState("dl");
-
-  // DERIVED STATE: Räknas ut vid varje knapptryck/ändring
-  const convertedValue = convertUnits(amount, "weight", fromUnit, toUnit);
-
   const units = Object.keys(UNIT_RATIOS.weight).map((key) => ({
     label: key,
     value: key,

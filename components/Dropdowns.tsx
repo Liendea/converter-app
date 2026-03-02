@@ -50,6 +50,7 @@ export default function Dropdowns({
         ]}
         autoScroll={false}
         iconColor="white"
+        placeholder="unit"
         placeholderStyle={{ color: "white" }}
         selectedTextStyle={{ color: "white", fontWeight: "bold" }}
         containerStyle={styles.listContainer}
@@ -80,6 +81,7 @@ export default function Dropdowns({
         ]}
         autoScroll={false}
         iconColor="black"
+        placeholder="unit"
         placeholderStyle={{ color: "black" }}
         selectedTextStyle={{ color: colors.buttonActiveColor }}
         containerStyle={styles.listContainer}

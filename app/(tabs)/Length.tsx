@@ -15,13 +15,6 @@ const length_colors = {
 };
 
 export default function Length() {
-  const [amount, setAmount] = useState("");
-  const [fromUnit, setFromUnit] = useState("cups");
-  const [toUnit, setToUnit] = useState("dl");
-
-  // DERIVED STATE: Räknas ut vid varje knapptryck/ändring
-  const convertedValue = convertUnits(amount, "length", fromUnit, toUnit);
-
   const units = Object.keys(UNIT_RATIOS.length).map((key) => ({
     label: key,
     value: key,

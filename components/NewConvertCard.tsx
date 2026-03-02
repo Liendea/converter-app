@@ -57,6 +57,7 @@ export default function NewConvertCard({
       <NewResultatCard
         amount={amount}
         fromUnit={fromUnit}
+        toUnit={toUnit}
         category={category}
         units={unitKeys}
         backgroundColor={colors.resultColor}

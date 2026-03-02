@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 import NewConvertCard from "@/components/NewConvertCard";
-import { convertUnits } from "@/utils/Convertunits";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
+import React from "react";
+import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 
 // FÄRGSCHEMA FÖR BAKINGTABBEN
 const baking_colors = {
@@ -15,13 +14,6 @@ const baking_colors = {
 };
 
 export default function BakingScreen() {
-  const [amount, setAmount] = useState("");
-  const [fromUnit, setFromUnit] = useState("cups");
-  const [toUnit, setToUnit] = useState("dl");
-
-  // DERIVED STATE: Räknas ut vid varje knapptryck/ändring
-  const convertedValue = convertUnits(amount, "baking", fromUnit, toUnit);
-
   const units = Object.keys(UNIT_RATIOS.baking).map((key) => ({
     label: key,
     value: key,
@@ -37,7 +29,7 @@ export default function BakingScreen() {
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
-        <NewConvertCard category="length" colors={baking_colors} />
+        <NewConvertCard category="baking" colors={baking_colors} />
       </ScrollView>
     </ImageBackground>
   );
