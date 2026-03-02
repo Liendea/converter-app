@@ -132,7 +132,7 @@ export default function CurrencyScreen() {
           {/* RESULTAT KORT */}
           <View style={[styles.resultContainer]}>
             {/* Header */}
-            <View style={styles.resultRow}>
+            <View style={styles.headerRow}>
               <Text style={styles.headerText}>Unit</Text>
               <Text style={styles.headerText}>Value</Text>
             </View>
@@ -240,8 +240,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 12,
-    borderBottomWidth: 0.5,
-    borderBottomColor: "#eee",
+    borderTopWidth: 0.5,
+    borderTopColor: "#eee",
+  },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 12,
   },
   headerText: {
     fontSize: 14,

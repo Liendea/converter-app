@@ -52,7 +52,11 @@ export default function Dropdowns({
         iconColor="white"
         placeholder="unit"
         placeholderStyle={{ color: "white" }}
-        selectedTextStyle={{ color: "white", fontWeight: "bold" }}
+        selectedTextStyle={{
+          color: "white",
+
+          textAlign: "center",
+        }}
         containerStyle={styles.listContainer}
         data={units}
         labelField="label"
@@ -66,7 +70,7 @@ export default function Dropdowns({
         <MaterialCommunityIcons
           name="swap-horizontal"
           size={28}
-          color={colors.buttonActiveColor}
+          color={"black"}
         />
       </Pressable>
 
@@ -83,7 +87,10 @@ export default function Dropdowns({
         iconColor="black"
         placeholder="unit"
         placeholderStyle={{ color: "black" }}
-        selectedTextStyle={{ color: colors.buttonActiveColor }}
+        selectedTextStyle={{
+          color: colors.buttonActiveColor,
+          textAlign: "center",
+        }}
         containerStyle={styles.listContainer}
         data={units}
         labelField="label"

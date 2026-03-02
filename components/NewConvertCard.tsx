@@ -2,7 +2,7 @@ import Dropdowns from "@/components/Dropdowns";
 import NewResultatCard from "@/components/NewResultCard";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
 import React, { useState } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
 type NewConvertCardProps = {
   category: keyof typeof UNIT_RATIOS; // "baking", "weight" eller "length"
@@ -36,6 +36,7 @@ export default function NewConvertCard({
     <View
       style={[styles.container, { backgroundColor: colors.backgroundColor }]}
     >
+      <Text style={styles.label}>Convert:</Text>
       <Dropdowns
         units={dropdownUnits}
         colors={colors}
@@ -69,8 +70,9 @@ export default function NewConvertCard({
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    padding: 20,
+    padding: 10,
     borderRadius: 20,
+    marginTop: 40,
   },
   label: {
     textAlign: "center",

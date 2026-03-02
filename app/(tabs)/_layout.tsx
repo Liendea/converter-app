@@ -5,17 +5,12 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs } from "expo-router";
 import React from "react";
 
-//FÄRGSCHEMA FÖR TABBARNA
-import Colors from "@/constants/Colors";
-import { useColorScheme } from "react-native";
-
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarInactiveTintColor: Colors[colorScheme ?? "light"].inactive,
+        headerShown: false,
+        tabBarInactiveTintColor: "gray",
         tabBarShowLabel: false,
         tabBarIconStyle: {
           flex: 1,
@@ -31,12 +26,12 @@ export default function TabLayout() {
       <Tabs.Screen
         name="Baking"
         options={{
-          title: "Let's bake!",
+          title: "Volume",
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="cupcake"
               size={33}
-              color={focused ? "#936B89" : Colors.dark.inactive}
+              color={focused ? "#936B89" : "gray"}
             />
           ),
         }}
@@ -44,12 +39,12 @@ export default function TabLayout() {
       <Tabs.Screen
         name="Weight"
         options={{
-          title: "Weight it!",
+          title: "Weight",
           tabBarIcon: ({ focused }) => (
             <FontAwesome6
               name="weight-scale"
               size={30}
-              color={focused ? "#3A6770" : Colors.dark.inactive}
+              color={focused ? "#3A6770" : "gray"}
             />
           ),
         }}
@@ -57,12 +52,12 @@ export default function TabLayout() {
       <Tabs.Screen
         name="Length"
         options={{
-          title: "How high?",
+          title: "Length",
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="ruler"
               size={30}
-              color={focused ? "#5351B7" : Colors.dark.inactive}
+              color={focused ? "#5351B7" : "gray"}
             />
           ),
         }}
@@ -70,26 +65,12 @@ export default function TabLayout() {
       <Tabs.Screen
         name="Currency"
         options={{
-          title: "How much?",
+          title: "Currency",
           tabBarIcon: ({ focused }) => (
             <MaterialIcons
               name="currency-exchange"
               size={30}
-              color={focused ? "#866308" : Colors.dark.inactive}
-            />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name="TEST"
-        options={{
-          title: "TEST",
-          tabBarIcon: ({ focused }) => (
-            <MaterialIcons
-              name="add"
-              size={24}
-              color={focused ? "#07d877" : Colors.dark.inactive}
+              color={focused ? "#866308" : "gray"}
             />
           ),
         }}

@@ -23,7 +23,7 @@ export default function BakingScreen() {
     <ImageBackground
       source={require("../../assets/images/bakgrund.png")}
       resizeMode="cover"
-      style={styles.backgroundImage}
+      style={[styles.backgroundImage, StyleSheet.absoluteFillObject]}
     >
       <ScrollView
         style={styles.scrollView}
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
+    padding: 10,
   },
 });
