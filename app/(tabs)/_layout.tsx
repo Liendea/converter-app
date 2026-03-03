@@ -4,6 +4,11 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs } from "expo-router";
 import React from "react";
+import { Dimensions } from "react-native";
+
+// 1. Hämta skärmbredden
+const { width } = Dimensions.get("window");
+const TAB_BAR_WIDTH = width * 0.8; // Baren ska vara 80% av skärmen
 
 export default function TabLayout() {
   return (
@@ -11,18 +16,28 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         sceneStyle: { backgroundColor: "transparent" },
+
         tabBarInactiveTintColor: "gray",
         tabBarShowLabel: false,
         tabBarIconStyle: {
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
+          marginTop: 10,
         },
         tabBarStyle: {
-          height: 80,
-          paddingBottom: 8,
-          borderTopWidth: 0,
-          elevation: 0,
+          // 2. Tvinga baren att flyta
+          position: "absolute",
+          bottom: 25,
+          marginHorizontal: 20,
+          // 3. Stil
+          backgroundColor: "#ffffff",
+          borderRadius: 35,
+          height: 70,
+          borderTopWidth: 0, // Tar bort den vita linjen/kanten
+
+          // 4. Skugga för att dölja glipor
+          elevation: 5,
+          shadowColor: "#000",
+          shadowOpacity: 0.1,
+          shadowRadius: 10,
         },
       }}
     >
