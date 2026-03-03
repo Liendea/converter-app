@@ -1,8 +1,12 @@
 import NewConvertCard from "@/components/NewConvertCard";
-import { convertUnits } from "@/utils/Convertunits";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
-import React, { useState } from "react";
-import { ImageBackground, ScrollView, StyleSheet } from "react-native";
+import React from "react";
+import {
+  Dimensions,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 
 // FÄRGSCHEMA FÖR LENGTHTABBEN
 const length_colors = {
@@ -36,12 +40,17 @@ export default function Length() {
   );
 }
 
+// Hämta skärmens faktiska storlek
+const { width, height } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
-  // Bakgrund
   backgroundImage: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
+    position: "absolute",
+    // Tvinga bilden att "blöda" över kanterna
+    width: width + 8,
+    height: height + 6,
+    left: -4,
+    right: -4,
   },
   scrollView: {
     flex: 1,

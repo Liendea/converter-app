@@ -1,6 +1,6 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import SwitchButton from "./SwitchButton";
 
 type UnitItem = {
   label: string;
@@ -14,7 +14,6 @@ type DropDownProps = {
   onFromChange: (value: string) => void; // Funktion som anropas när "from" enheten ändras
   onToChange: (value: string) => void; // Funktion som anropas när "to" enheten ändras
   colors: {
-    // Olika färger för dropdowns och knappar beroende på anropande tab
     backgroundColor: string;
     buttonColor: string;
     buttonBorderColor: string;
@@ -51,10 +50,9 @@ export default function Dropdowns({
         autoScroll={false}
         iconColor="white"
         placeholder="unit"
-        placeholderStyle={{ color: "white" }}
+        placeholderStyle={{ color: "white", textAlign: "center" }}
         selectedTextStyle={{
           color: "white",
-
           textAlign: "center",
         }}
         containerStyle={styles.listContainer}
@@ -66,13 +64,7 @@ export default function Dropdowns({
       />
 
       {/* Switch knapp*/}
-      <Pressable onPress={handleSwap} style={styles.swapBtn}>
-        <MaterialCommunityIcons
-          name="swap-horizontal"
-          size={28}
-          color={"black"}
-        />
-      </Pressable>
+      <SwitchButton onPress={handleSwap} />
 
       {/* Dropdown för "to" enhet */}
       <Dropdown
@@ -86,7 +78,7 @@ export default function Dropdowns({
         autoScroll={false}
         iconColor="black"
         placeholder="unit"
-        placeholderStyle={{ color: "black" }}
+        placeholderStyle={{ color: "black", textAlign: "center" }}
         selectedTextStyle={{
           color: colors.buttonActiveColor,
           textAlign: "center",
@@ -120,8 +112,5 @@ const styles = StyleSheet.create({
   listContainer: {
     borderRadius: 15,
     overflow: "hidden",
-  },
-  swapBtn: {
-    padding: 5,
   },
 });

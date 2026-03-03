@@ -1,11 +1,11 @@
+import SwitchButton from "@/components/SwitchButton";
 import { fetchExchangeRates } from "@/utils/CurrencyApi";
 import { data } from "@/utils/CurrencyData";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  Dimensions,
   ImageBackground,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -72,6 +72,11 @@ export default function CurrencyScreen() {
     getConversion();
   }, [amount, fromUnit, toUnit]);
 
+  function handleSwap() {
+    setFromUnit(toUnit);
+    setToUnit(fromUnit);
+  }
+
   return (
     <ImageBackground
       source={require("../../assets/images/bakgrund4.png")}
@@ -87,7 +92,7 @@ export default function CurrencyScreen() {
 
           {/* Container for unit buttons */}
 
-          <View style={styles.btnContainer}>
+          <View style={styles.dropDownContainer}>
             <Dropdown
               style={[styles.dropdown, styles.dropdownFromUnit]}
               autoScroll={false}
@@ -99,18 +104,9 @@ export default function CurrencyScreen() {
               value={fromUnit}
               onChange={(item) => setFromUnit(item.value)}
             />
-            <Pressable
-              onPress={() => {
-                setFromUnit(toUnit);
-                setToUnit(fromUnit);
-              }}
-            >
-              <MaterialCommunityIcons
-                name="swap-horizontal"
-                size={24}
-                color="black"
-              />
-            </Pressable>
+
+            <SwitchButton onPress={handleSwap} />
+
             <Dropdown
               style={styles.dropdown}
               autoScroll={false}
@@ -157,12 +153,17 @@ export default function CurrencyScreen() {
   );
 }
 
+// Hämta skärmens faktiska storlek
+const { width, height } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
-  // Bakgrund
   backgroundImage: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
+    position: "absolute",
+    // Tvinga bilden att "blöda" över kanterna
+    width: width + 8,
+    height: height + 6,
+    left: -4,
+    right: -4,
   },
 
   // ScrollView och container
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: "400",
   },
-  btnContainer: {
+  dropDownContainer: {
     flexDirection: "row",
     marginBottom: 20,
     gap: 10,
@@ -254,7 +255,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 1,
     color: "#fff",
-    opacity: 0.7, // Gör rubriken lite mer diskret än värdena
+    opacity: 0.7,
   },
   unitText: {
     fontSize: 16,

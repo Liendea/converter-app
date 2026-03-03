@@ -1,7 +1,12 @@
 import NewConvertCard from "@/components/NewConvertCard";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
 import React from "react";
-import { ImageBackground, ScrollView, StyleSheet } from "react-native";
+import {
+  Dimensions,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 
 // FÄRGSCHEMA FÖR BAKINGTABBEN
 const baking_colors = {
@@ -23,7 +28,7 @@ export default function BakingScreen() {
     <ImageBackground
       source={require("../../assets/images/bakgrund.png")}
       resizeMode="cover"
-      style={[styles.backgroundImage, StyleSheet.absoluteFillObject]}
+      style={styles.backgroundImage}
     >
       <ScrollView
         style={styles.scrollView}
@@ -35,21 +40,25 @@ export default function BakingScreen() {
   );
 }
 
+// Hämta skärmens faktiska storlek
+const { width, height } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
-  // Bakgrund
   backgroundImage: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
+    position: "absolute",
+    // Tvinga bilden att "blöda" över kanterna
+    width: width + 8,
+    height: height + 6,
+    left: -4,
+    right: -4,
   },
   scrollView: {
     flex: 1,
-    backgroundColor: "transparent",
   },
   contentContainer: {
     flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 10,
+    padding: 20,
   },
 });

@@ -10,6 +10,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
+        sceneStyle: { backgroundColor: "transparent" },
         tabBarInactiveTintColor: "gray",
         tabBarShowLabel: false,
         tabBarIconStyle: {
@@ -20,6 +21,8 @@ export default function TabLayout() {
         tabBarStyle: {
           height: 80,
           paddingBottom: 8,
+          borderTopWidth: 0,
+          elevation: 0,
         },
       }}
     >
