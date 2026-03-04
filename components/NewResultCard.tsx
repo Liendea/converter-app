@@ -1,9 +1,11 @@
 import { convertUnits } from "@/utils/Convertunits";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
-
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import ExpandButton from "./ExpandButton";
+import Header from "./Header";
+import MainResult from "./MainResults";
+import OtherResults from "./OtherResults";
 import Spacer from "./Spacer";
 
 type NewResultatCardProps = {
@@ -23,7 +25,6 @@ export default function NewResultatCard({
   category,
   units,
   backgroundColor,
-  textColor,
 }: NewResultatCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -40,47 +41,27 @@ export default function NewResultatCard({
   return (
     <View style={[styles.resultContainer, { backgroundColor }]}>
       {/* Header */}
-      <View style={styles.headerRow}>
-        <Text style={styles.headerText}>Unit</Text>
-        <Text style={styles.headerText}>Value</Text>
-      </View>
-      {/* MAIN RESULTAT */}
-      <View>
-        <View style={styles.resultRow}>
-          <Text style={styles.unitText}>{toUnit}</Text>
-          <Text style={styles.valText}>{mainResult || "0"}</Text>
-        </View>
-      </View>
+      <Header />
+      {/* MAIN RESULT */}
+      <MainResult toUnit={toUnit} mainResult={mainResult} />
+      {/* OTHER RESULT */}
       {isExpanded && (
-        <ScrollView>
-          {/* Övriga units resultat */}
-          {cleanedUnits.map((toUnit) => {
-            // Räkna ut värdet
-            const convertedValue = convertUnits(
-              amount,
-              category,
-              fromUnit,
-              toUnit,
-            );
-            return (
-              <View
-                key={toUnit}
-                style={[styles.resultRow, styles.expandedResults]}
-              >
-                <Text style={styles.unitText}>{toUnit}</Text>
-                <Text style={styles.valText}>{convertedValue || "0"}</Text>
-              </View>
-            );
-          })}
-        </ScrollView>
+        <OtherResults
+          amount={amount}
+          category={category}
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          cleanedUnits={cleanedUnits}
+        />
       )}
-      {/* Show more knapp */}
+      {/* SHOW MORE BUTTON */}
       <Spacer height={10} />
       <ExpandButton onPress={handlePress} isExpanded={isExpanded} />
     </View>
   );
 }
 
+// STYLING
 const styles = StyleSheet.create({
   resultContainer: {
     borderRadius: 15,
@@ -93,44 +74,5 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     height: "auto",
     maxHeight: "65%",
-  },
-
-  headerRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 12,
-  },
-  resultRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 12,
-    borderTopWidth: 0.5,
-    borderTopColor: "#eee",
-    borderBottomWidth: 0.5,
-    borderBottomColor: "#eee",
-  },
-  expandedResults: {
-    opacity: 0.5,
-    borderTopWidth: 0,
-    borderTopColor: "#eee",
-  },
-
-  headerText: {
-    fontSize: 14,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    letterSpacing: 1,
-    color: "#fff",
-    opacity: 0.7, // Gör rubriken lite mer diskret än värdena
-  },
-  unitText: {
-    fontSize: 16,
-    textTransform: "capitalize",
-    color: "#fff",
-  },
-  valText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#fff",
   },
 });
