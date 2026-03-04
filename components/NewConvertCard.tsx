@@ -72,9 +72,10 @@ export default function NewConvertCard({
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    padding: 10,
+    padding: 20,
     borderRadius: 20,
     height: "auto",
+    maxHeight: "70%",
   },
   label: {
     textAlign: "center",

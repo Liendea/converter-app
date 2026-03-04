@@ -1,8 +1,10 @@
 import { convertUnits } from "@/utils/Convertunits";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+
 import React, { useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import ExpandButton from "./ExpandButton";
+import Spacer from "./Spacer";
 
 type NewResultatCardProps = {
   amount: string; // Det användaren skrivit in (t.ex. "2")
@@ -32,6 +34,9 @@ export default function NewResultatCard({
   const otherUnits = units.filter((u) => u !== toUnit);
   const cleanedUnits = otherUnits.filter((u) => u !== fromUnit);
 
+  function handlePress() {
+    setIsExpanded(!isExpanded);
+  }
   return (
     <View style={[styles.resultContainer, { backgroundColor }]}>
       {/* Header */}
@@ -58,7 +63,10 @@ export default function NewResultatCard({
               toUnit,
             );
             return (
-              <View key={toUnit} style={styles.resultRow}>
+              <View
+                key={toUnit}
+                style={[styles.resultRow, styles.expandedResults]}
+              >
                 <Text style={styles.unitText}>{toUnit}</Text>
                 <Text style={styles.valText}>{convertedValue || "0"}</Text>
               </View>
@@ -67,20 +75,8 @@ export default function NewResultatCard({
         </ScrollView>
       )}
       {/* Show more knapp */}
-      <Pressable
-        onPress={() => setIsExpanded(!isExpanded)}
-        style={styles.expandButton}
-      >
-        <Text style={styles.unitText}>
-          {isExpanded ? "Hide Units" : "More units"}
-        </Text>
-        <MaterialIcons
-          name={isExpanded ? "keyboard-arrow-up" : "keyboard-arrow-down"}
-          size={24}
-          color="white"
-          paddingLeft="5"
-        />
-      </Pressable>
+      <Spacer height={10} />
+      <ExpandButton onPress={handlePress} isExpanded={isExpanded} />
     </View>
   );
 }
@@ -110,7 +106,15 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderTopWidth: 0.5,
     borderTopColor: "#eee",
+    borderBottomWidth: 0.5,
+    borderBottomColor: "#eee",
   },
+  expandedResults: {
+    opacity: 0.5,
+    borderTopWidth: 0,
+    borderTopColor: "#eee",
+  },
+
   headerText: {
     fontSize: 14,
     fontWeight: "bold",
@@ -128,19 +132,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#fff",
-  },
-
-  expandButton: {
-    marginTop: 8,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    opacity: 0.95, // Gör rubriken lite mer diskret än värdena
-    backgroundColor: "#ffffff3a",
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    width: "105%",
-    alignSelf: "center",
   },
 });

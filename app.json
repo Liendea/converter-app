@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "App_one",
-    "slug": "App_one",
+    "name": "Converter",
+    "slug": "Converter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/cupcake.png",
-    "scheme": "appone",
+    "scheme": "converter",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
