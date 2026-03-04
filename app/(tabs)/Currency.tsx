@@ -1,4 +1,6 @@
-import SwitchButton from "@/components/SwitchButton";
+import Dropdowns from "@/components/Dropdowns";
+import InfoBox from "@/components/InfoBox";
+import Spacer from "@/components/Spacer";
 import { fetchExchangeRates } from "@/utils/CurrencyApi";
 import { data } from "@/utils/CurrencyData";
 import React, { useEffect, useState } from "react";
@@ -12,7 +14,6 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { Dropdown } from "react-native-element-dropdown";
 
 // FÄRGSCHEMA FÖR CURRENCYTABBEN
 const colors = {
@@ -33,36 +34,54 @@ export default function CurrencyScreen() {
 
   useEffect(() => {
     const getConversion = async () => {
-      // 1. Tömmer användaren fältet? Nollställ allt direkt.
-      if (!amount || amount.trim() === "") {
+      // 1. Byt ut komma tillpunkt i input strängen
+      let sanitized = amount.replace(",", ".");
+
+      // 2. Nollställ om anv tömmer fältet.
+      if (!sanitized || sanitized.trim() === "") {
+        setResult(null);
+        setLoading(false);
+        return;
+      }
+      //3.  Om användare skriver ".5" -> gör om till "0.5"
+      if (sanitized.startsWith(".")) {
+        sanitized = "0" + sanitized;
+      }
+
+      // 4. Vänta med att anropa API om man bara skrivit "0." eller "."
+      // För att förhindra att API:et kraschar
+      if (sanitized.endsWith(".")) {
+        setResult(null);
+        return;
+      }
+
+      const num = parseFloat(sanitized);
+
+      // 5. Om det inte är ett giltigt nummer, nollställ.
+      if (isNaN(num) || num <= 0) {
         setResult(null);
         setLoading(false);
         return;
       }
 
-      const num = parseFloat(amount.replace(",", "."));
-
-      // 2. Om det inte är ett giltigt nummer, nollställ.
-      if (isNaN(num)) {
-        setResult(null);
+      // 6. Samma valuta? (undvik api anrop)
+      if (fromUnit === toUnit) {
+        setResult(num.toFixed(2));
         setLoading(false);
         return;
       }
 
+      //7. Anrop a API
       setLoading(true);
-
       try {
-        // Eftersom value i data nu är ren (t.ex. "SEK"), kan vi använda fromUnit direkt
         const res = await fetchExchangeRates(num, fromUnit);
 
         if (res && res[toUnit.toUpperCase()]) {
-          setResult(res[toUnit.toUpperCase()]);
-        } else if (fromUnit === toUnit) {
-          // Om man valt samma valuta på båda sidor
-          setResult(num.toFixed(2));
+          const val = res[toUnit.toUpperCase()];
+          setResult(typeof val === "number" ? val.toFixed(2) : val.toString());
         }
       } catch (error) {
-        console.error("Conversion error:", error);
+        console.error("Felet:", error);
         setResult("Error");
       } finally {
         setLoading(false);
@@ -71,11 +90,6 @@ export default function CurrencyScreen() {
 
     getConversion();
   }, [amount, fromUnit, toUnit]);
-
-  function handleSwap() {
-    setFromUnit(toUnit);
-    setToUnit(fromUnit);
-  }
 
   return (
     <ImageBackground
@@ -89,34 +103,19 @@ export default function CurrencyScreen() {
       >
         <View style={styles.container}>
           <Text style={styles.label}>Convert:</Text>
-
+          <Spacer height={20} />
           {/* Container for unit buttons */}
 
-          <View style={styles.dropDownContainer}>
-            <Dropdown
-              style={[styles.dropdown, styles.dropdownFromUnit]}
-              autoScroll={false}
-              iconColor="#fff"
-              selectedTextStyle={{ color: "#fff" }}
-              data={data}
-              labelField="display"
-              valueField="value"
-              value={fromUnit}
-              onChange={(item) => setFromUnit(item.value)}
-            />
-
-            <SwitchButton onPress={handleSwap} />
-
-            <Dropdown
-              style={styles.dropdown}
-              autoScroll={false}
-              data={data}
-              labelField="display"
-              valueField="value"
-              value={toUnit}
-              onChange={(item) => setToUnit(item.value)}
-            />
-          </View>
+          <Dropdowns
+            units={data}
+            fromUnit={fromUnit}
+            toUnit={toUnit}
+            onFromChange={setFromUnit}
+            onToChange={setToUnit}
+            colors={colors}
+            labelField="display"
+          />
+          <Spacer height={20} />
           <TextInput
             style={styles.input}
             keyboardType="decimal-pad"
@@ -125,6 +124,7 @@ export default function CurrencyScreen() {
             placeholder="Enter amount..."
             placeholderTextColor="#0000008a"
           />
+          <Spacer height={20} />
           {/* RESULTAT KORT */}
           <View style={[styles.resultContainer]}>
             {/* Header */}
@@ -141,12 +141,10 @@ export default function CurrencyScreen() {
               </View>
             )}
           </View>
-          <View style={styles.infoSection}>
-            <Text style={styles.infoTitle}>Info</Text>
-            <Text style={styles.infoBody}>
-              Valutan uppdateras en gång om dagen (runt kl. 16:00 CET).
-            </Text>
-          </View>
+
+          <Spacer height={20} />
+          {/* Info ruta */}
+          <InfoBox />
         </View>
       </ScrollView>
     </ImageBackground>
@@ -187,12 +185,12 @@ const styles = StyleSheet.create({
   label: {
     textAlign: "center",
     fontSize: 18,
-    marginBottom: 10,
+
     fontWeight: "400",
   },
   dropDownContainer: {
     flexDirection: "row",
-    marginBottom: 20,
+
     gap: 10,
     alignItems: "center",
     justifyContent: "space-between",
@@ -204,7 +202,6 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 50,
     fontSize: 16,
-    marginBottom: 20,
     width: "100%",
     borderWidth: 1,
     borderColor: "#866308",
@@ -225,7 +222,6 @@ const styles = StyleSheet.create({
   },
 
   resultContainer: {
-    marginTop: 10,
     borderRadius: 15,
     padding: 20,
     width: "100%",
@@ -262,14 +258,4 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     color: "#fff",
   },
-
-  //Info-sektionen
-  infoSection: {
-    marginTop: 30,
-    padding: 20,
-    backgroundColor: "#eee",
-    borderRadius: 10,
-  },
-  infoTitle: { fontSize: 18, fontWeight: "bold", marginBottom: 10 },
-  infoBody: { fontSize: 14, color: "#666" },
 });

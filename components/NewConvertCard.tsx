@@ -3,6 +3,7 @@ import NewResultatCard from "@/components/NewResultCard";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
+import Spacer from "./Spacer";
 
 type NewConvertCardProps = {
   category: keyof typeof UNIT_RATIOS; // "baking", "weight" eller "length"
@@ -19,12 +20,12 @@ export default function NewConvertCard({
   category,
   colors,
 }: NewConvertCardProps) {
-  const [amount, setAmount] = useState("");
-  const [fromUnit, setFromUnit] = useState("");
-  const [toUnit, setToUnit] = useState("");
-
   const unitData = UNIT_RATIOS[category];
   const unitKeys = Object.keys(unitData);
+
+  const [amount, setAmount] = useState("");
+  const [fromUnit, setFromUnit] = useState(unitKeys[0] || "");
+  const [toUnit, setToUnit] = useState(unitKeys[1] || "");
 
   // Skapa listan för dropdownen
   const dropdownUnits = unitKeys.map((key) => ({
@@ -37,6 +38,7 @@ export default function NewConvertCard({
       style={[styles.container, { backgroundColor: colors.backgroundColor }]}
     >
       <Text style={styles.label}>Convert:</Text>
+      <Spacer height={20} />
       <Dropdowns
         units={dropdownUnits}
         colors={colors}
@@ -45,16 +47,16 @@ export default function NewConvertCard({
         onFromChange={setFromUnit}
         onToChange={setToUnit}
       />
-
+      <Spacer height={20} />
       <TextInput
         style={[styles.input, { borderColor: colors.buttonBorderColor }]}
         placeholder={`Enter units of ${fromUnit}...`}
         keyboardType="decimal-pad"
         value={amount}
-        onChangeText={setAmount} // Uppdaterar state direkt
+        onChangeText={setAmount}
         placeholderTextColor="#0000008a"
       />
-
+      <Spacer height={20} />
       <NewResultatCard
         amount={amount}
         fromUnit={fromUnit}
@@ -72,12 +74,11 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 10,
     borderRadius: 20,
-    marginTop: 40,
+    height: "auto",
   },
   label: {
     textAlign: "center",
     fontSize: 18,
-    marginBottom: 10,
     fontWeight: "400",
   },
   input: {

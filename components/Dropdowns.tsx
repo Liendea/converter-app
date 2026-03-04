@@ -3,8 +3,9 @@ import { Dropdown } from "react-native-element-dropdown";
 import SwitchButton from "./SwitchButton";
 
 type UnitItem = {
-  label: string;
+  label?: string;
   value: string;
+  display?: string;
 };
 
 type DropDownProps = {
@@ -13,6 +14,7 @@ type DropDownProps = {
   toUnit: string; // Den aktuella "to" enheten, t.ex. "dl"
   onFromChange: (value: string) => void; // Funktion som anropas när "from" enheten ändras
   onToChange: (value: string) => void; // Funktion som anropas när "to" enheten ändras
+  labelField?: string;
   colors: {
     backgroundColor: string;
     buttonColor: string;
@@ -29,6 +31,7 @@ export default function Dropdowns({
   onFromChange,
   onToChange,
   colors,
+  labelField = "label",
 }: DropDownProps) {
   // Funktion för att byta plats på "from" och "to" enheterna
   const handleSwap = () => {
@@ -57,7 +60,7 @@ export default function Dropdowns({
         }}
         containerStyle={styles.listContainer}
         data={units}
-        labelField="label"
+        labelField={labelField}
         valueField="value"
         value={fromUnit}
         onChange={(item) => onFromChange(item.value)}
@@ -85,7 +88,7 @@ export default function Dropdowns({
         }}
         containerStyle={styles.listContainer}
         data={units}
-        labelField="label"
+        labelField={labelField}
         valueField="value"
         value={toUnit}
         onChange={(item) => onToChange(item.value)}
@@ -100,7 +103,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    marginVertical: 15,
   },
   dropdown: {
     flex: 1,

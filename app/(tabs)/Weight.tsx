@@ -52,9 +52,9 @@ const styles = StyleSheet.create({
     left: -4,
     right: -4,
   },
+
   scrollView: {
     flex: 1,
-    backgroundColor: "transparent",
   },
   contentContainer: {
     flexGrow: 1,

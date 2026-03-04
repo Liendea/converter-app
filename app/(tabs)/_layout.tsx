@@ -23,17 +23,16 @@ export default function TabLayout() {
           marginTop: 10,
         },
         tabBarStyle: {
-          // 2. Tvinga baren att flyta
+          // Positionering
           position: "absolute",
           bottom: 25,
           marginHorizontal: 20,
-          // 3. Stil
+          // style
           backgroundColor: "#ffffff",
           borderRadius: 35,
           height: 70,
-          borderTopWidth: 0, // Tar bort den vita linjen/kanten
-
-          // 4. Skugga för att dölja glipor
+          borderTopWidth: 0,
+          // skugga
           elevation: 5,
           shadowColor: "#000",
           shadowOpacity: 0.1,

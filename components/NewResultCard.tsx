@@ -2,7 +2,7 @@ import { convertUnits } from "@/utils/Convertunits";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React, { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 type NewResultatCardProps = {
   amount: string; // Det användaren skrivit in (t.ex. "2")
@@ -47,7 +47,7 @@ export default function NewResultatCard({
         </View>
       </View>
       {isExpanded && (
-        <View>
+        <ScrollView>
           {/* Övriga units resultat */}
           {cleanedUnits.map((toUnit) => {
             // Räkna ut värdet
@@ -64,7 +64,7 @@ export default function NewResultatCard({
               </View>
             );
           })}
-        </View>
+        </ScrollView>
       )}
       {/* Show more knapp */}
       <Pressable
@@ -87,7 +87,6 @@ export default function NewResultatCard({
 
 const styles = StyleSheet.create({
   resultContainer: {
-    marginTop: 30,
     borderRadius: 15,
     padding: 20,
     width: "100%",
@@ -96,6 +95,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+    height: "auto",
+    maxHeight: "65%",
   },
 
   headerRow: {

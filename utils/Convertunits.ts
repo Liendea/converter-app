@@ -6,7 +6,7 @@ export const convertUnits = (
   fromUnit: string,
   toUnit: string,
 ) => {
-  const numValue = parseFloat(value.replace(",", ".")); // Byt ut komma tecken till punktum för att hantera decimaler korrekt
+  const numValue = parseFloat(value.replace(",", ".")); // Byt ut komma tecken till punkt för att hantera decimaler korrekt
   if (!value || isNaN(numValue)) return "";
 
   const ratios = UNIT_RATIOS[category];
