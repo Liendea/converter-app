@@ -6,21 +6,21 @@ import {
   ImageBackground,
   ScrollView,
   StyleSheet,
-  useColorScheme,
 } from "react-native";
+import ThemeToggle from "../_components/ThemeToggle";
+import { useTheme } from "../context/ThemeContext";
 import { weight_colors } from "./colors/colors";
 
 export default function WeightScreen() {
-  const colorScheme = useColorScheme();
-  // Om colorScheme är 'dark', använd dark-objektet, annars light
-  const theme = weight_colors[colorScheme === "dark" ? "dark" : "light"];
+  const { theme } = useTheme(); // Hämta 'light' eller 'dark'
+  const isDarkMode = theme === "dark";
+  const activeColors = weight_colors[theme];
 
   const units = Object.keys(UNIT_RATIOS.weight).map((key) => ({
     label: key,
     value: key,
   }));
 
-  const isDarkMode = colorScheme === "dark";
   return (
     <ImageBackground
       source={
@@ -31,11 +31,12 @@ export default function WeightScreen() {
       resizeMode="cover"
       style={styles.backgroundImage}
     >
+      <ThemeToggle />
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
-        <NewConvertCard category="weight" colors={theme} />
+        <NewConvertCard category="weight" colors={activeColors} />
       </ScrollView>
     </ImageBackground>
   );

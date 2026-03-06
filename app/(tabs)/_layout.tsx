@@ -1,16 +1,17 @@
 //ICONS
 import TabbarIcon from "@/src/_components/TabbarIcon";
+import { useTheme } from "@/src/context/ThemeContext";
 import { Tabs } from "expo-router";
 import React from "react";
-import { Dimensions, useColorScheme } from "react-native";
+import { Dimensions } from "react-native";
 
 // 1. Hämta skärmbredden
 const { width } = Dimensions.get("window");
 const TAB_BAR_WIDTH = width * 0.8; // Baren ska vara 80% av skärmen
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-  const isDarkMode = colorScheme === "dark";
+  const { theme } = useTheme(); // Hämta 'light' eller 'dark'
+  const isDarkMode = theme === "dark";
 
   return (
     <Tabs

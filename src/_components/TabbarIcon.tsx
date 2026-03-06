@@ -4,8 +4,9 @@ import {
   ImageSourcePropType,
   StyleSheet,
   Text,
-  useColorScheme,
 } from "react-native";
+
+import { useTheme } from "@/src/context/ThemeContext";
 
 type TabbarIconProps = {
   focused: boolean;
@@ -19,8 +20,8 @@ export default function TabbarIcon({
   title,
   focused,
 }: TabbarIconProps) {
-  const colorScheme = useColorScheme();
-  const isDarkMode = colorScheme === "dark";
+  const { theme } = useTheme(); // Hämta 'light' eller 'dark'
+  const isDarkMode = theme === "dark";
 
   if (focused)
     return (

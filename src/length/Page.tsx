@@ -1,26 +1,26 @@
 import NewConvertCard from "@/src/_components/NewConvertCard";
 import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
-import { length_colors } from "@/src/length/colors/colors";
 import React from "react";
 import {
   Dimensions,
   ImageBackground,
   ScrollView,
   StyleSheet,
-  useColorScheme,
 } from "react-native";
+import ThemeToggle from "../_components/ThemeToggle";
+import { useTheme } from "../context/ThemeContext";
+import { length_colors } from "./colors/colors";
 
 export default function LengthScreen() {
-  const colorScheme = useColorScheme();
-  // Om colorScheme är 'dark', använd dark-objektet, annars light
-  const theme = length_colors[colorScheme === "dark" ? "dark" : "light"];
+  const { theme } = useTheme(); // Hämta 'light' eller 'dark'
+  const isDarkMode = theme === "dark";
+  const activeColors = length_colors[theme];
 
   const units = Object.keys(UNIT_RATIOS.length).map((key) => ({
     label: key,
     value: key,
   }));
 
-  const isDarkMode = colorScheme === "dark";
   return (
     <ImageBackground
       source={
@@ -31,11 +31,12 @@ export default function LengthScreen() {
       resizeMode="cover"
       style={styles.backgroundImage}
     >
+      <ThemeToggle />
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
-        <NewConvertCard category="length" colors={theme} />
+        <NewConvertCard category="length" colors={activeColors} />
       </ScrollView>
     </ImageBackground>
   );

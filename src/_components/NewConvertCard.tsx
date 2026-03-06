@@ -1,14 +1,9 @@
 import Dropdowns from "@/src/_components/Dropdowns";
 import NewResultatCard from "@/src/_components/NewResultCard";
 import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
+import { useTheme } from "@/src/context/ThemeContext";
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  useColorScheme,
-} from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import Spacer from "./Spacer";
 
 type ColorTheme = {
@@ -28,8 +23,8 @@ export default function NewConvertCard({
   category,
   colors,
 }: NewConvertCardProps) {
-  const colorScheme = useColorScheme();
-  const isDarkMode = colorScheme === "dark";
+  const { theme } = useTheme(); // Hämta 'light' eller 'dark'
+  const isDarkMode = theme === "dark";
 
   const unitData = UNIT_RATIOS[category];
   const unitKeys = Object.keys(unitData);

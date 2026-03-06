@@ -7,14 +7,14 @@ import {
   ImageBackground,
   ScrollView,
   StyleSheet,
-  useColorScheme,
 } from "react-native";
+import ThemeToggle from "../_components/ThemeToggle";
+import { useTheme } from "../context/ThemeContext";
 
 export default function BakingScreen() {
-  const colorScheme = useColorScheme();
-  // Om colorScheme är 'dark', använd dark-objektet, annars light
-  const theme = baking_colors[colorScheme === "dark" ? "dark" : "light"];
-  const isDarkMode = colorScheme === "dark";
+  const { theme } = useTheme(); // Hämta 'light' eller 'dark'
+  const isDarkMode = theme === "dark";
+  const activeColors = baking_colors[theme];
 
   const units = Object.keys(UNIT_RATIOS.baking).map((key) => ({
     label: key,
@@ -31,11 +31,13 @@ export default function BakingScreen() {
       resizeMode="cover"
       style={styles.backgroundImage}
     >
+      <ThemeToggle />
+
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
-        <NewConvertCard category="baking" colors={theme} />
+        <NewConvertCard category="baking" colors={activeColors} />
       </ScrollView>
     </ImageBackground>
   );

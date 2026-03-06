@@ -5,7 +5,7 @@ export default function InfoBox() {
     <View style={styles.infoSection}>
       <Text style={styles.infoTitle}>Info</Text>
       <Text style={styles.infoBody}>
-        Valutan uppdateras en gång om dagen (runt kl. 16:00 CET).
+        Currency rates update once daily (around 16:00 CET).
       </Text>
     </View>
   );
