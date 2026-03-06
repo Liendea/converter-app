@@ -7,7 +7,6 @@ export default function ThemeToggle() {
   const { theme, mode, setMode } = useTheme();
 
   const toggleTheme = () => {
-    // Växla mellan light och dark (du kan även lägga till 'system' i en meny)
     setMode(theme === "light" ? "dark" : "light");
   };
 
@@ -22,7 +21,7 @@ export default function ThemeToggle() {
         <Text
           style={[styles.text, { color: theme === "light" ? "#333" : "#fff" }]}
         >
-          {theme === "light" ? "Mörkt läge" : "Ljust läge"}
+          {theme === "light" ? "Dark mode" : "Light mode"}
         </Text>
       </TouchableOpacity>
     </View>
@@ -32,9 +31,9 @@ export default function ThemeToggle() {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    top: 50, // Justera beroende på din status bar höjd
+    top: 50,
     right: 20,
-    zIndex: 10, // Se till att den ligger ovanpå allt
+    zIndex: 10,
   },
   button: {
     flexDirection: "row",
