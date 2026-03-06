@@ -1,4 +1,5 @@
 import NewConvertCard from "@/components/NewConvertCard";
+import { length_colors } from "@/src/length/colors/colors";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
 import React from "react";
 import {
@@ -8,17 +9,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-// FÄRGSCHEMA FÖR LENGTHTABBEN
-const length_colors = {
-  backgroundColor: "rgba(251, 236, 229, 0.80)",
-  resultColor: "#716FFF",
-  buttonColor: "#EDE7E4",
-  buttonBorderColor: "#5351B7",
-  buttonActiveColor: "#5351B7",
-  buttonActiveBorderColor: "#5351B7",
-};
-
-export default function Length() {
+export default function LengthScreen() {
   const units = Object.keys(UNIT_RATIOS.length).map((key) => ({
     label: key,
     value: key,

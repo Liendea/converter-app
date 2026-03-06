@@ -1,7 +1,5 @@
 //ICONS
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import TabbarIcon from "@/components/TabbarIcon";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Dimensions } from "react-native";
@@ -16,7 +14,6 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         sceneStyle: { backgroundColor: "transparent" },
-
         tabBarInactiveTintColor: "gray",
         tabBarShowLabel: false,
         tabBarIconStyle: {
@@ -27,6 +24,9 @@ export default function TabLayout() {
           position: "absolute",
           bottom: 25,
           marginHorizontal: 20,
+          paddingHorizontal: 10,
+          paddingTop: 5,
+
           // style
           backgroundColor: "#ffffff",
           borderRadius: 35,
@@ -45,10 +45,11 @@ export default function TabLayout() {
         options={{
           title: "Volume",
           tabBarIcon: ({ focused }) => (
-            <MaterialCommunityIcons
-              name="cupcake"
-              size={33}
-              color={focused ? "#936B89" : "gray"}
+            <TabbarIcon
+              focused={focused}
+              title={"Baking"}
+              icon={require("@/assets/images/icons/Baking.png")}
+              backgroundColor={require("@/assets/images/icons/Pink.png")}
             />
           ),
         }}
@@ -58,10 +59,11 @@ export default function TabLayout() {
         options={{
           title: "Weight",
           tabBarIcon: ({ focused }) => (
-            <FontAwesome6
-              name="weight-scale"
-              size={30}
-              color={focused ? "#3A6770" : "gray"}
+            <TabbarIcon
+              focused={focused}
+              title={"Weight"}
+              icon={require("@/assets/images/icons/Weight.png")}
+              backgroundColor={require("@/assets/images/icons/green.png")}
             />
           ),
         }}
@@ -71,10 +73,11 @@ export default function TabLayout() {
         options={{
           title: "Length",
           tabBarIcon: ({ focused }) => (
-            <MaterialCommunityIcons
-              name="ruler"
-              size={30}
-              color={focused ? "#5351B7" : "gray"}
+            <TabbarIcon
+              focused={focused}
+              title={"Length"}
+              icon={require("@/assets/images/icons/Length.png")}
+              backgroundColor={require("@/assets/images/icons/blue.png")}
             />
           ),
         }}
@@ -84,10 +87,11 @@ export default function TabLayout() {
         options={{
           title: "Currency",
           tabBarIcon: ({ focused }) => (
-            <MaterialIcons
-              name="currency-exchange"
-              size={30}
-              color={focused ? "#866308" : "gray"}
+            <TabbarIcon
+              focused={focused}
+              title={"Currency"}
+              icon={require("@/assets/images/icons/Currency.png")}
+              backgroundColor={require("@/assets/images/icons/yellow.png")}
             />
           ),
         }}

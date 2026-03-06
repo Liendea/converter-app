@@ -1,6 +1,6 @@
 import { ActivityIndicator, StyleSheet, View } from "react-native";
-import Header from "./Header";
-import MainResult from "./MainResults";
+import Header from "../../../components/Header";
+import MainResult from "../../../components/MainResults";
 
 type CurrencyResultCardProps = {
   toUnit: string;

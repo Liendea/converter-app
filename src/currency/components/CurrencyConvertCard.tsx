@@ -1,19 +1,10 @@
 import Dropdowns from "@/components/Dropdowns";
-import { data } from "@/utils/CurrencyData";
+import { currency_colors } from "@/src/currency/colors/colors";
+import { data } from "@/src/currency/utils/CurrencyData";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import Spacer from "../../../components/Spacer";
 import CurrencyResultCard from "./CurrencyResultCard";
 import InfoBox from "./InfoBox";
-import Spacer from "./Spacer";
-
-// FÄRGSCHEMA FÖR CURRENCYTABBEN
-const colors = {
-  backgroundColor: "rgba(251, 236, 229, 0.80)",
-  resultColor: "#926C08",
-  buttonColor: "#EDE7E4",
-  buttonBorderColor: "#866308",
-  buttonActiveColor: "#866308",
-  buttonActiveBorderColor: "#866308",
-};
 
 type CurrencyConvertCard = {
   fromUnit: string;
@@ -50,7 +41,7 @@ export default function CurrencyConvertCard({
           toUnit={toUnit}
           onFromChange={onFromChange}
           onToChange={onToChange}
-          colors={colors}
+          colors={currency_colors}
           labelField="display"
         />
 

@@ -1,17 +1,7 @@
-import CurrencyConvertCard from "@/components/CurrencyConvertCard";
-import { fetchExchangeRates } from "@/utils/CurrencyApi";
+import CurrencyConvertCard from "@/src/currency/components/CurrencyConvertCard";
+import { fetchExchangeRates } from "@/src/currency/utils/api/CurrencyApi";
 import React, { useEffect, useState } from "react";
 import { Dimensions, ImageBackground, StyleSheet } from "react-native";
-
-// FÄRGSCHEMA FÖR CURRENCYTABBEN
-const colors = {
-  backgroundColor: "rgba(251, 236, 229, 0.80)",
-  resultColor: "#926C08",
-  buttonColor: "#EDE7E4",
-  buttonBorderColor: "#866308",
-  buttonActiveColor: "#866308",
-  buttonActiveBorderColor: "#866308",
-};
 
 export default function CurrencyScreen() {
   const [amount, setAmount] = useState("1");

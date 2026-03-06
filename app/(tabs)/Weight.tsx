@@ -1,4 +1,5 @@
 import NewConvertCard from "@/components/NewConvertCard";
+import { weight_colors } from "@/src/weight/colors/colors";
 import { UNIT_RATIOS } from "@/utils/unitRatios";
 import React from "react";
 import {
@@ -8,17 +9,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-// FÄRGSCHEMA FÖR WEIGHTTABBEN
-const weight_colors = {
-  backgroundColor: "rgba(251, 236, 229, 0.80)",
-  resultColor: "#3A6770",
-  buttonColor: "#EDE7E4",
-  buttonBorderColor: "#28464B",
-  buttonActiveColor: "#28464B",
-  buttonActiveBorderColor: "#28464B",
-};
-
-export default function Length() {
+export default function WeightScreen() {
   const units = Object.keys(UNIT_RATIOS.weight).map((key) => ({
     label: key,
     value: key,
