@@ -76,7 +76,7 @@ export default function Dropdowns({
         style={[
           styles.dropdown,
           {
-            backgroundColor: colors.backgroundColor,
+            backgroundColor: colors.buttonColor,
             borderColor: colors.buttonBorderColor,
           },
         ]}

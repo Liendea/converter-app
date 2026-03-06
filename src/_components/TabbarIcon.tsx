@@ -4,6 +4,7 @@ import {
   ImageSourcePropType,
   StyleSheet,
   Text,
+  useColorScheme,
 } from "react-native";
 
 type TabbarIconProps = {
@@ -18,11 +19,16 @@ export default function TabbarIcon({
   title,
   focused,
 }: TabbarIconProps) {
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === "dark";
+
   if (focused)
     return (
       <ImageBackground style={styles.background} source={backgroundColor}>
         <Image style={styles.icon} source={icon} />
-        <Text style={styles.title}>{title}</Text>
+        <Text style={[styles.title, { color: isDarkMode ? "white" : "black" }]}>
+          {title}
+        </Text>
       </ImageBackground>
     );
   else {

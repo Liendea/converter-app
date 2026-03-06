@@ -7,17 +7,27 @@ import {
   ImageBackground,
   ScrollView,
   StyleSheet,
+  useColorScheme,
 } from "react-native";
 
 export default function LengthScreen() {
+  const colorScheme = useColorScheme();
+  // Om colorScheme är 'dark', använd dark-objektet, annars light
+  const theme = length_colors[colorScheme === "dark" ? "dark" : "light"];
+
   const units = Object.keys(UNIT_RATIOS.length).map((key) => ({
     label: key,
     value: key,
   }));
 
+  const isDarkMode = colorScheme === "dark";
   return (
     <ImageBackground
-      source={require("../../assets/images/bakgrund3.png")}
+      source={
+        isDarkMode
+          ? require("../../assets/images/bakgrund3_dark.png")
+          : require("../../assets/images/bakgrund3.png")
+      }
       resizeMode="cover"
       style={styles.backgroundImage}
     >
@@ -25,7 +35,7 @@ export default function LengthScreen() {
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
-        <NewConvertCard category="length" colors={length_colors} />
+        <NewConvertCard category="length" colors={theme} />
       </ScrollView>
     </ImageBackground>
   );

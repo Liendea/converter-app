@@ -7,9 +7,15 @@ import {
   ImageBackground,
   ScrollView,
   StyleSheet,
+  useColorScheme,
 } from "react-native";
 
 export default function BakingScreen() {
+  const colorScheme = useColorScheme();
+  // Om colorScheme är 'dark', använd dark-objektet, annars light
+  const theme = baking_colors[colorScheme === "dark" ? "dark" : "light"];
+  const isDarkMode = colorScheme === "dark";
+
   const units = Object.keys(UNIT_RATIOS.baking).map((key) => ({
     label: key,
     value: key,
@@ -17,7 +23,11 @@ export default function BakingScreen() {
 
   return (
     <ImageBackground
-      source={require("../../assets/images/bakgrund.png")}
+      source={
+        isDarkMode
+          ? require("../../assets/images/bakgrund_dark.png")
+          : require("../../assets/images/bakgrund.png")
+      }
       resizeMode="cover"
       style={styles.backgroundImage}
     >
@@ -25,7 +35,7 @@ export default function BakingScreen() {
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
-        <NewConvertCard category="baking" colors={baking_colors} />
+        <NewConvertCard category="baking" colors={theme} />
       </ScrollView>
     </ImageBackground>
   );
@@ -37,7 +47,6 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   backgroundImage: {
     position: "absolute",
-    // Tvinga bilden att "blöda" över kanterna
     width: width + 8,
     height: height + 6,
     left: -4,

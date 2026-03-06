@@ -1,23 +1,33 @@
 import NewConvertCard from "@/src/_components/NewConvertCard";
 import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
-import { weight_colors } from "@/src/weight/colors/colors";
 import React from "react";
 import {
   Dimensions,
   ImageBackground,
   ScrollView,
   StyleSheet,
+  useColorScheme,
 } from "react-native";
+import { weight_colors } from "./colors/colors";
 
 export default function WeightScreen() {
+  const colorScheme = useColorScheme();
+  // Om colorScheme är 'dark', använd dark-objektet, annars light
+  const theme = weight_colors[colorScheme === "dark" ? "dark" : "light"];
+
   const units = Object.keys(UNIT_RATIOS.weight).map((key) => ({
     label: key,
     value: key,
   }));
 
+  const isDarkMode = colorScheme === "dark";
   return (
     <ImageBackground
-      source={require("../../assets/images/bakgrund2.png")}
+      source={
+        isDarkMode
+          ? require("../../assets/images/bakgrund2_dark.png")
+          : require("../../assets/images/bakgrund2.png")
+      }
       resizeMode="cover"
       style={styles.backgroundImage}
     >
@@ -25,7 +35,7 @@ export default function WeightScreen() {
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
-        <NewConvertCard category="weight" colors={weight_colors} />
+        <NewConvertCard category="weight" colors={theme} />
       </ScrollView>
     </ImageBackground>
   );

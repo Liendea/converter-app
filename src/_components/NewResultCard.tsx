@@ -39,7 +39,9 @@ export default function NewResultatCard({
     setIsExpanded(!isExpanded);
   }
   return (
-    <View style={[styles.resultContainer, { backgroundColor }]}>
+    <View
+      style={[styles.resultContainer, { backgroundColor: backgroundColor }]}
+    >
       {/* Header */}
       <Header />
       {/* MAIN RESULT */}

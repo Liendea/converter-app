@@ -1,19 +1,17 @@
 //ICONS
 import TabbarIcon from "@/src/_components/TabbarIcon";
-import { useNavigationState } from "@react-navigation/native";
 import { Tabs } from "expo-router";
 import React from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, useColorScheme } from "react-native";
 
 // 1. Hämta skärmbredden
 const { width } = Dimensions.get("window");
 const TAB_BAR_WIDTH = width * 0.8; // Baren ska vara 80% av skärmen
 
 export default function TabLayout() {
-  // Detta ger oss indexet för den flik som är öppen just nu (0, 1, 2...)
-  const currentIndex = useNavigationState((state) => state?.index ?? 0);
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === "dark";
 
-  console.log(currentIndex);
   return (
     <Tabs
       screenOptions={{
@@ -29,11 +27,11 @@ export default function TabLayout() {
           position: "absolute",
           bottom: 25,
           marginHorizontal: 20,
-          paddingHorizontal: 15,
+          paddingHorizontal: 18,
           paddingTop: 5,
 
           // style
-          backgroundColor: "#ffffff",
+          backgroundColor: isDarkMode ? "#000000de" : "#ffffff",
           borderRadius: 35,
           height: 70,
           borderTopWidth: 0,
@@ -53,7 +51,11 @@ export default function TabLayout() {
             <TabbarIcon
               focused={focused}
               title={"Baking"}
-              icon={require("@/assets/images/icons/Baking.png")}
+              icon={
+                isDarkMode
+                  ? require("@/assets/images/icons/baking_white.png")
+                  : require("@/assets/images/icons/Baking.png")
+              }
               backgroundColor={require("@/assets/images/icons/Pink.png")}
             />
           ),
@@ -67,7 +69,11 @@ export default function TabLayout() {
             <TabbarIcon
               focused={focused}
               title={"Weight"}
-              icon={require("@/assets/images/icons/Weight.png")}
+              icon={
+                isDarkMode
+                  ? require("@/assets/images/icons/Weight_white.png")
+                  : require("@/assets/images/icons/Weight.png")
+              }
               backgroundColor={require("@/assets/images/icons/green.png")}
             />
           ),
@@ -81,7 +87,11 @@ export default function TabLayout() {
             <TabbarIcon
               focused={focused}
               title={"Length"}
-              icon={require("@/assets/images/icons/Length.png")}
+              icon={
+                isDarkMode
+                  ? require("@/assets/images/icons/Length_white.png")
+                  : require("@/assets/images/icons/Length.png")
+              }
               backgroundColor={require("@/assets/images/icons/blue.png")}
             />
           ),
@@ -95,7 +105,11 @@ export default function TabLayout() {
             <TabbarIcon
               focused={focused}
               title={"Currency"}
-              icon={require("@/assets/images/icons/Currency.png")}
+              icon={
+                isDarkMode
+                  ? require("@/assets/images/icons/Currency_white.png")
+                  : require("@/assets/images/icons/Currency.png")
+              }
               backgroundColor={require("@/assets/images/icons/yellow.png")}
             />
           ),

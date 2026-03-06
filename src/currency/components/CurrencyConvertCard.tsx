@@ -1,10 +1,25 @@
 import Dropdowns from "@/src/_components/Dropdowns";
-import { currency_colors } from "@/src/currency/colors/colors";
 import { data } from "@/src/currency/utils/CurrencyData";
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  useColorScheme,
+} from "react-native";
 import Spacer from "../../_components/Spacer";
 import CurrencyResultCard from "./CurrencyResultCard";
 import InfoBox from "./InfoBox";
+
+type ColorTheme = {
+  backgroundColor: string;
+  resultColor: string;
+  buttonColor: string;
+  buttonBorderColor: string;
+  buttonActiveColor: string;
+  buttonActiveBorderColor: string;
+};
 
 type CurrencyConvertCard = {
   fromUnit: string;
@@ -15,6 +30,7 @@ type CurrencyConvertCard = {
   amount: string;
   result: string | null;
   loading: boolean;
+  colors: ColorTheme;
 };
 export default function CurrencyConvertCard({
   fromUnit,
@@ -25,14 +41,22 @@ export default function CurrencyConvertCard({
   amount,
   result,
   loading,
+  colors,
 }: CurrencyConvertCard) {
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === "dark";
+
   return (
     <ScrollView
       style={styles.scrollView}
       contentContainerStyle={styles.contentContainer}
     >
-      <View style={styles.container}>
-        <Text style={styles.label}>Convert:</Text>
+      <View
+        style={[styles.container, { backgroundColor: colors.backgroundColor }]}
+      >
+        <Text style={[styles.label, { color: isDarkMode ? "white" : "black" }]}>
+          Convert:
+        </Text>
         {/* DROPDOWNS AND SWAPBUTTON */}
         <Spacer height={20} />
         <Dropdowns
@@ -41,14 +65,17 @@ export default function CurrencyConvertCard({
           toUnit={toUnit}
           onFromChange={onFromChange}
           onToChange={onToChange}
-          colors={currency_colors}
+          colors={colors}
           labelField="display"
         />
 
         {/* TEXT INPUT */}
         <Spacer height={20} />
         <TextInput
-          style={styles.input}
+          style={[
+            styles.input,
+            { borderColor: isDarkMode ? "white" : colors.buttonActiveColor },
+          ]}
           keyboardType="decimal-pad"
           value={amount}
           onChangeText={onChangeText}
@@ -58,7 +85,12 @@ export default function CurrencyConvertCard({
 
         {/* RESULTAT KORT */}
         <Spacer height={20} />
-        <CurrencyResultCard toUnit={toUnit} result={result} loading={loading} />
+        <CurrencyResultCard
+          toUnit={toUnit}
+          result={result}
+          loading={loading}
+          colors={colors}
+        />
 
         {/* Info ruta */}
         <Spacer height={20} />
@@ -69,7 +101,6 @@ export default function CurrencyConvertCard({
 }
 
 const styles = StyleSheet.create({
-  // ScrollView och container
   scrollView: {
     flex: 1,
     backgroundColor: "transparent",
@@ -81,12 +112,11 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   container: {
-    width: "100%", // Se till att den tar upp bredden
+    width: "100%",
     borderRadius: 20,
     backgroundColor: "rgba(251, 236, 229, 0.80)",
     padding: 20,
   },
-  // Label
   label: {
     textAlign: "center",
     fontSize: 18,
@@ -98,15 +128,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-
-  // Input
   input: {
     backgroundColor: "#fff",
     padding: 15,
     borderRadius: 50,
     fontSize: 16,
     width: "100%",
-    borderWidth: 1,
-    borderColor: "#866308",
+    borderWidth: 2,
   },
 });

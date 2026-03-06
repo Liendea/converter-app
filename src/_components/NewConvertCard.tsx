@@ -2,24 +2,35 @@ import Dropdowns from "@/src/_components/Dropdowns";
 import NewResultatCard from "@/src/_components/NewResultCard";
 import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  useColorScheme,
+} from "react-native";
 import Spacer from "./Spacer";
+
+type ColorTheme = {
+  backgroundColor: string;
+  resultColor: string;
+  buttonColor: string;
+  buttonBorderColor: string;
+  buttonActiveColor: string;
+  buttonActiveBorderColor: string;
+};
 
 type NewConvertCardProps = {
   category: keyof typeof UNIT_RATIOS; // "baking", "weight" eller "length"
-  colors: {
-    backgroundColor: string;
-    resultColor: string;
-    buttonColor: string;
-    buttonBorderColor: string;
-    buttonActiveColor: string;
-    buttonActiveBorderColor: string;
-  };
+  colors: ColorTheme;
 };
 export default function NewConvertCard({
   category,
   colors,
 }: NewConvertCardProps) {
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === "dark";
+
   const unitData = UNIT_RATIOS[category];
   const unitKeys = Object.keys(unitData);
 
@@ -37,7 +48,9 @@ export default function NewConvertCard({
     <View
       style={[styles.container, { backgroundColor: colors.backgroundColor }]}
     >
-      <Text style={styles.label}>Convert:</Text>
+      <Text style={[styles.label, { color: isDarkMode ? "white" : "black" }]}>
+        Convert:
+      </Text>
       <Spacer height={20} />
       <Dropdowns
         units={dropdownUnits}
@@ -85,7 +98,7 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     textAlign: "center",
-    borderWidth: 1,
+    borderWidth: 2,
     padding: 15,
     borderRadius: 50,
     fontSize: 16,

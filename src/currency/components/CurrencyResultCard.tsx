@@ -2,19 +2,32 @@ import { ActivityIndicator, StyleSheet, View } from "react-native";
 import Header from "../../_components/Header";
 import MainResult from "../../_components/MainResults";
 
+type ColorTheme = {
+  backgroundColor: string;
+  resultColor: string;
+  buttonColor: string;
+  buttonBorderColor: string;
+  buttonActiveColor: string;
+  buttonActiveBorderColor: string;
+};
+
 type CurrencyResultCardProps = {
   toUnit: string;
   result: string | null;
   loading: boolean;
+  colors: ColorTheme;
 };
 
 export default function CurrencyResultCard({
   toUnit,
   result,
   loading,
+  colors,
 }: CurrencyResultCardProps) {
   return (
-    <View style={[styles.resultContainer]}>
+    <View
+      style={[styles.resultContainer, { backgroundColor: colors.resultColor }]}
+    >
       {/* Header */}
       <Header />
       {loading ? (
