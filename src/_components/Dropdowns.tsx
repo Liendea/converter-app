@@ -33,6 +33,8 @@ export default function Dropdowns({
   colors,
   labelField = "label",
 }: DropDownProps) {
+  const cleanedUnits = units.filter((u) => u.value !== fromUnit);
+
   // Funktion för att byta plats på "from" och "to" enheterna
   const handleSwap = () => {
     onFromChange(toUnit);
@@ -87,7 +89,7 @@ export default function Dropdowns({
           textAlign: "center",
         }}
         containerStyle={styles.listContainer}
-        data={units}
+        data={cleanedUnits}
         labelField={labelField}
         valueField="value"
         value={toUnit}

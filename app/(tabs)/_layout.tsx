@@ -1,5 +1,6 @@
 //ICONS
 import TabbarIcon from "@/src/_components/TabbarIcon";
+import { useNavigationState } from "@react-navigation/native";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Dimensions } from "react-native";
@@ -9,6 +10,10 @@ const { width } = Dimensions.get("window");
 const TAB_BAR_WIDTH = width * 0.8; // Baren ska vara 80% av skärmen
 
 export default function TabLayout() {
+  // Detta ger oss indexet för den flik som är öppen just nu (0, 1, 2...)
+  const currentIndex = useNavigationState((state) => state?.index ?? 0);
+
+  console.log(currentIndex);
   return (
     <Tabs
       screenOptions={{
