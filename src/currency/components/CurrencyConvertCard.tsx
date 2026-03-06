@@ -1,8 +1,8 @@
-import Dropdowns from "@/components/Dropdowns";
+import Dropdowns from "@/src/_components/Dropdowns";
 import { currency_colors } from "@/src/currency/colors/colors";
 import { data } from "@/src/currency/utils/CurrencyData";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
-import Spacer from "../../../components/Spacer";
+import Spacer from "../../_components/Spacer";
 import CurrencyResultCard from "./CurrencyResultCard";
 import InfoBox from "./InfoBox";
 

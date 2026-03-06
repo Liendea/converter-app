@@ -33,7 +33,7 @@ export default function TabbarIcon({
 const styles = StyleSheet.create({
   background: {
     width: 106,
-    height: 70,
+    height: 60,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",

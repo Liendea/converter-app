@@ -1,5 +1,5 @@
-import { convertUnits } from "@/utils/Convertunits";
-import { UNIT_RATIOS } from "@/utils/unitRatios";
+import { convertUnits } from "@/src/_utils/Convertunits";
+import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 type OtherResultsProps = {

@@ -1,5 +1,5 @@
 //ICONS
-import TabbarIcon from "@/components/TabbarIcon";
+import TabbarIcon from "@/src/_components/TabbarIcon";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Dimensions } from "react-native";
@@ -24,7 +24,7 @@ export default function TabLayout() {
           position: "absolute",
           bottom: 25,
           marginHorizontal: 20,
-          paddingHorizontal: 10,
+          paddingHorizontal: 15,
           paddingTop: 5,
 
           // style

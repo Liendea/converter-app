@@ -1,6 +1,6 @@
-import Dropdowns from "@/components/Dropdowns";
-import NewResultatCard from "@/components/NewResultCard";
-import { UNIT_RATIOS } from "@/utils/unitRatios";
+import Dropdowns from "@/src/_components/Dropdowns";
+import NewResultatCard from "@/src/_components/NewResultCard";
+import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import Spacer from "./Spacer";

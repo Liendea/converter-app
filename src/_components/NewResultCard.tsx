@@ -1,5 +1,5 @@
-import { convertUnits } from "@/utils/Convertunits";
-import { UNIT_RATIOS } from "@/utils/unitRatios";
+import { convertUnits } from "@/src/_utils/Convertunits";
+import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import ExpandButton from "./ExpandButton";
