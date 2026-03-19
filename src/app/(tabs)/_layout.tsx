@@ -1,13 +1,8 @@
 //ICONS
-import TabbarIcon from "@/src/_components/TabbarIcon";
-import { useTheme } from "@/src/context/ThemeContext";
 import { Tabs } from "expo-router";
 import React from "react";
-import { Dimensions } from "react-native";
-
-// 1. Hämta skärmbredden
-const { width } = Dimensions.get("window");
-const TAB_BAR_WIDTH = width * 0.8; // Baren ska vara 80% av skärmen
+import TabbarIcon from "../../_components/TabbarIcon";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function TabLayout() {
   const { theme } = useTheme(); // Hämta 'light' eller 'dark'
@@ -54,10 +49,10 @@ export default function TabLayout() {
               title={"Baking"}
               icon={
                 isDarkMode
-                  ? require("@/assets/images/icons/baking_white.png")
-                  : require("@/assets/images/icons/Baking.png")
+                  ? require("../../assets/images/icons/baking_white.png")
+                  : require("../../assets/images/icons/Baking.png")
               }
-              backgroundColor={require("@/assets/images/icons/Pink.png")}
+              backgroundColor={require("../../assets/images/icons/Pink.png")}
             />
           ),
         }}
@@ -72,10 +67,10 @@ export default function TabLayout() {
               title={"Weight"}
               icon={
                 isDarkMode
-                  ? require("@/assets/images/icons/Weight_white.png")
-                  : require("@/assets/images/icons/Weight.png")
+                  ? require("../../assets/images/icons/Weight_white.png")
+                  : require("../../assets/images/icons/Weight.png")
               }
-              backgroundColor={require("@/assets/images/icons/green.png")}
+              backgroundColor={require("../../assets/images/icons/green.png")}
             />
           ),
         }}
@@ -90,10 +85,10 @@ export default function TabLayout() {
               title={"Length"}
               icon={
                 isDarkMode
-                  ? require("@/assets/images/icons/Length_white.png")
-                  : require("@/assets/images/icons/Length.png")
+                  ? require("../../assets/images/icons/Length_white.png")
+                  : require("../../assets/images/icons/Length.png")
               }
-              backgroundColor={require("@/assets/images/icons/blue.png")}
+              backgroundColor={require("../../assets/images/icons/blue.png")}
             />
           ),
         }}
@@ -108,10 +103,10 @@ export default function TabLayout() {
               title={"Currency"}
               icon={
                 isDarkMode
-                  ? require("@/assets/images/icons/Currency_white.png")
-                  : require("@/assets/images/icons/Currency.png")
+                  ? require("../../assets/images/icons/Currency_white.png")
+                  : require("../../assets/images/icons/Currency.png")
               }
-              backgroundColor={require("@/assets/images/icons/yellow.png")}
+              backgroundColor={require("../../assets/images/icons/yellow.png")}
             />
           ),
         }}

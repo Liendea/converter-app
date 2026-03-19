@@ -1,6 +1,6 @@
-import { convertUnits } from "@/src/_utils/Convertunits";
-import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { convertUnits } from "../_utils/Convertunits";
+import { UNIT_RATIOS } from "../_utils/unitRatios";
 
 type OtherResultsProps = {
   amount: string; // Det användaren skrivit in (t.ex. "2")

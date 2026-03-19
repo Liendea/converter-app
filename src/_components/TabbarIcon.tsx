@@ -6,7 +6,7 @@ import {
   Text,
 } from "react-native";
 
-import { useTheme } from "@/src/context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 
 type TabbarIconProps = {
   focused: boolean;

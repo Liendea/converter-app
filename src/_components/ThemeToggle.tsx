@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTheme } from "../context/ThemeContext";
 
 export default function ThemeToggle() {
-  const { theme, mode, setMode } = useTheme();
+  const { theme, setMode } = useTheme();
 
   const toggleTheme = () => {
     setMode(theme === "light" ? "dark" : "light");

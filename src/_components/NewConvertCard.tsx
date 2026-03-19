@@ -1,9 +1,9 @@
-import Dropdowns from "@/src/_components/Dropdowns";
-import NewResultatCard from "@/src/_components/NewResultCard";
-import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
-import { useTheme } from "@/src/context/ThemeContext";
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
+import Dropdowns from "../_components/Dropdowns";
+import NewResultatCard from "../_components/NewResultCard";
+import { UNIT_RATIOS } from "../_utils/unitRatios";
+import { useTheme } from "../context/ThemeContext";
 import Spacer from "./Spacer";
 
 type ColorTheme = {

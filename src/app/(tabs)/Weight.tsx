@@ -1,4 +1,4 @@
-import WeightScreen from "@/src/weight/Page";
+import WeightScreen from "../../weight/Page";
 export default function Weight() {
   return <WeightScreen />;
 }

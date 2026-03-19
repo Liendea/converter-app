@@ -1,8 +1,8 @@
-import CurrencyConvertCard from "@/src/currency/components/CurrencyConvertCard";
 import React, { useState } from "react";
 import { Dimensions, ImageBackground, StyleSheet } from "react-native";
 import ThemeToggle from "../_components/ThemeToggle";
 import { useTheme } from "../context/ThemeContext";
+import CurrencyConvertCard from "../currency/components/CurrencyConvertCard";
 import { currency_colors } from "./colors/colors";
 import { useCurrencyConversion } from "./utils/hooks/useCurrencyConversions";
 
@@ -20,8 +20,8 @@ export default function CurrencyScreen() {
     <ImageBackground
       source={
         isDarkMode
-          ? require("../../assets/images/bakgrund4_dark.png")
-          : require("../../assets/images/bakgrund4.png")
+          ? require("@/assets/images/bakgrund4_dark.png")
+          : require("@/assets/images/bakgrund4.png")
       }
       resizeMode="cover"
       style={styles.backgroundImage}

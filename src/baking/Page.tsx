@@ -1,6 +1,3 @@
-import NewConvertCard from "@/src/_components/NewConvertCard";
-import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
-import { baking_colors } from "@/src/baking/colors/colors";
 import React from "react";
 import {
   Dimensions,
@@ -8,7 +5,9 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
+import NewConvertCard from "../_components/NewConvertCard";
 import ThemeToggle from "../_components/ThemeToggle";
+import { baking_colors } from "../baking/colors/colors";
 import { useTheme } from "../context/ThemeContext";
 
 export default function BakingScreen() {
@@ -16,17 +15,12 @@ export default function BakingScreen() {
   const isDarkMode = theme === "dark";
   const activeColors = baking_colors[theme];
 
-  const units = Object.keys(UNIT_RATIOS.baking).map((key) => ({
-    label: key,
-    value: key,
-  }));
-
   return (
     <ImageBackground
       source={
         isDarkMode
-          ? require("../../assets/images/bakgrund_dark.png")
-          : require("../../assets/images/bakgrund.png")
+          ? require("@/assets/images/bakgrund_dark.png")
+          : require("@/assets/images/bakgrund.png")
       }
       resizeMode="cover"
       style={styles.backgroundImage}

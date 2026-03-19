@@ -1,7 +1,7 @@
-import { convertUnits } from "@/src/_utils/Convertunits";
-import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { convertUnits } from "../_utils/Convertunits";
+import { UNIT_RATIOS } from "../_utils/unitRatios";
 import ExpandButton from "./ExpandButton";
 import Header from "./Header";
 import MainResult from "./MainResults";

@@ -1,14 +1,8 @@
-import Dropdowns from "@/src/_components/Dropdowns";
-import { data } from "@/src/currency/utils/CurrencyData";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  useColorScheme,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import Dropdowns from "../../_components/Dropdowns";
 import Spacer from "../../_components/Spacer";
+import { useTheme } from "../../context/ThemeContext";
+import { data } from "../../currency/utils/CurrencyData";
 import CurrencyResultCard from "./CurrencyResultCard";
 import InfoBox from "./InfoBox";
 
@@ -21,7 +15,7 @@ type ColorTheme = {
   buttonActiveBorderColor: string;
 };
 
-type CurrencyConvertCard = {
+type CurrencyConvertCardProps = {
   fromUnit: string;
   toUnit: string;
   onFromChange: (value: string) => void;
@@ -42,9 +36,9 @@ export default function CurrencyConvertCard({
   result,
   loading,
   colors,
-}: CurrencyConvertCard) {
-  const colorScheme = useColorScheme();
-  const isDarkMode = colorScheme === "dark";
+}: CurrencyConvertCardProps) {
+  const { theme } = useTheme(); // Hämta 'light' eller 'dark'
+  const isDarkMode = theme === "dark";
 
   return (
     <ScrollView

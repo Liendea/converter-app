@@ -1,5 +1,3 @@
-import NewConvertCard from "@/src/_components/NewConvertCard";
-import { UNIT_RATIOS } from "@/src/_utils/unitRatios";
 import React from "react";
 import {
   Dimensions,
@@ -7,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
+import NewConvertCard from "../_components/NewConvertCard";
 import ThemeToggle from "../_components/ThemeToggle";
 import { useTheme } from "../context/ThemeContext";
 import { weight_colors } from "./colors/colors";
@@ -16,17 +15,12 @@ export default function WeightScreen() {
   const isDarkMode = theme === "dark";
   const activeColors = weight_colors[theme];
 
-  const units = Object.keys(UNIT_RATIOS.weight).map((key) => ({
-    label: key,
-    value: key,
-  }));
-
   return (
     <ImageBackground
       source={
         isDarkMode
-          ? require("../../assets/images/bakgrund2_dark.png")
-          : require("../../assets/images/bakgrund2.png")
+          ? require("../assets/images/bakgrund2_dark.png")
+          : require("../assets/images/bakgrund2.png")
       }
       resizeMode="cover"
       style={styles.backgroundImage}
