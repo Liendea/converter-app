@@ -26,7 +26,6 @@ export default function BakingScreen() {
       style={styles.backgroundImage}
     >
       <ThemeToggle />
-
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
@@ -43,13 +42,14 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   backgroundImage: {
     position: "absolute",
-    width: width + 8,
-    height: height + 6,
-    left: -4,
+    width: width + 30,
+    height: height + 20,
+    left: -15,
     right: -4,
   },
   scrollView: {
     flex: 1,
+    maxWidth: "100%",
   },
   contentContainer: {
     flexGrow: 1,

@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   Image,
   ImageBackground,
   ImageSourcePropType,
@@ -13,19 +14,35 @@ type TabbarIconProps = {
   icon: ImageSourcePropType;
   title: string;
   backgroundColor: ImageSourcePropType;
+  activeBackgroundMobile: number;
+  activeBackgroundIpad: number;
 };
 export default function TabbarIcon({
   backgroundColor,
   icon,
   title,
   focused,
+  activeBackgroundMobile,
+  activeBackgroundIpad,
 }: TabbarIconProps) {
   const { theme } = useTheme(); // Hämta 'light' eller 'dark'
   const isDarkMode = theme === "dark";
 
+  // Hämta skärmens faktiska storlek
+  const { width } = Dimensions.get("window");
+
   if (focused)
     return (
-      <ImageBackground style={styles.background} source={backgroundColor}>
+      <ImageBackground
+        style={[
+          styles.background,
+          {
+            width: width > 600 ? activeBackgroundIpad : activeBackgroundMobile,
+          },
+          { marginTop: width > 600 ? 4 : 2 },
+        ]}
+        source={backgroundColor}
+      >
         <Image style={styles.icon} source={icon} />
         <Text style={[styles.title, { color: isDarkMode ? "white" : "black" }]}>
           {title}
@@ -39,13 +56,10 @@ export default function TabbarIcon({
 
 const styles = StyleSheet.create({
   background: {
-    width: 106,
     height: 60,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    marginLeft: 0,
-    marginTop: 2,
     borderRadius: 100,
     overflow: "hidden",
   },

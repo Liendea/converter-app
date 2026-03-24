@@ -43,14 +43,15 @@ const styles = StyleSheet.create({
   backgroundImage: {
     position: "absolute",
     // Tvinga bilden att "blöda" över kanterna
-    width: width + 8,
-    height: height + 6,
-    left: -4,
+    width: width + 30,
+    height: height + 20,
+    left: -15,
     right: -4,
   },
 
   scrollView: {
     flex: 1,
+    maxWidth: "100%",
   },
   contentContainer: {
     flexGrow: 1,

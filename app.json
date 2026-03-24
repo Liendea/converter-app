@@ -4,12 +4,12 @@
     "slug": "Converter",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "@/assets/image/cupcake.png",
+    "icon": "./src/assets/images/cupcake.png",
     "scheme": "converter",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "@/assets/image/cupcake.png",
+      "image": "./src/assets/images/cupcake.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,8 +18,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "@/assets/image/cupcake.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./src/assets/images/icons/Icon.png",
+        "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
@@ -28,7 +28,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "@/assets/image/cupcake.png"
+      "favicon": "./src/assets/images/cupcake.png"
     },
     "plugins": ["expo-router"],
     "experiments": {

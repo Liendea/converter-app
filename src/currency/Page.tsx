@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dimensions, ImageBackground, StyleSheet } from "react-native";
+import { Dimensions, ImageBackground, StyleSheet, View } from "react-native";
 import ThemeToggle from "../_components/ThemeToggle";
 import { useTheme } from "../context/ThemeContext";
 import CurrencyConvertCard from "../currency/components/CurrencyConvertCard";
@@ -28,17 +28,19 @@ export default function CurrencyScreen() {
     >
       <ThemeToggle />
 
-      <CurrencyConvertCard
-        fromUnit={fromUnit}
-        toUnit={toUnit}
-        onFromChange={setFromUnit}
-        onToChange={setToUnit}
-        onChangeText={setAmount}
-        amount={amount}
-        result={result}
-        loading={loading}
-        colors={activeColors}
-      />
+      <View style={styles.container}>
+        <CurrencyConvertCard
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          onFromChange={setFromUnit}
+          onToChange={setToUnit}
+          onChangeText={setAmount}
+          amount={amount}
+          result={result}
+          loading={loading}
+          colors={activeColors}
+        />
+      </View>
     </ImageBackground>
   );
 }
@@ -50,9 +52,13 @@ const styles = StyleSheet.create({
   backgroundImage: {
     position: "absolute",
     // Tvinga bilden att "blöda" över kanterna
-    width: width + 8,
-    height: height + 6,
-    left: -4,
+    width: width + 30,
+    height: height + 20,
+    left: -15,
     right: -4,
+  },
+  container: {
+    flex: 1,
+    maxWidth: "100%",
   },
 });

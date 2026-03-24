@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons"; // Standard i Expo
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../context/ThemeContext";
 
 export default function ThemeToggle() {
@@ -12,7 +12,18 @@ export default function ThemeToggle() {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={toggleTheme} style={styles.button}>
+      <Pressable
+        onPress={toggleTheme}
+        style={[
+          styles.button,
+          {
+            backgroundColor:
+              theme === "dark"
+                ? "rgba(0, 0, 0, 0.7)"
+                : "rgba(251, 236, 229, 0.80)",
+          },
+        ]}
+      >
         <Ionicons
           name={theme === "light" ? "moon" : "sunny"}
           size={24}
@@ -23,7 +34,7 @@ export default function ThemeToggle() {
         >
           {theme === "light" ? "Dark mode" : "Light mode"}
         </Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }
@@ -32,13 +43,13 @@ const styles = StyleSheet.create({
   container: {
     position: "absolute",
     top: 50,
-    right: 20,
+    right: 30,
     zIndex: 10,
   },
   button: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "rgba(150, 150, 150, 0.2)",
+    backgroundColor: "rgba(251, 236, 229, 0.80)",
     padding: 8,
     borderRadius: 20,
     gap: 8,

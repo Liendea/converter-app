@@ -1,12 +1,21 @@
 //ICONS
 import { Tabs } from "expo-router";
 import React from "react";
+import { Dimensions } from "react-native";
 import TabbarIcon from "../../_components/TabbarIcon";
 import { useTheme } from "../../context/ThemeContext";
 
 export default function TabLayout() {
   const { theme } = useTheme(); // Hämta 'light' eller 'dark'
   const isDarkMode = theme === "dark";
+
+  // Hämta skärmens faktiska storlek
+  const { width } = Dimensions.get("window");
+
+  const tabBarWidthMobile = width * 0.9;
+  const tabBarWidthIpad = width * 0.6;
+  const activeBackgroundMobile = tabBarWidthMobile * 0.3;
+  const activeBackgroundIpad = tabBarWidthIpad * 0.28;
 
   return (
     <Tabs
@@ -22,7 +31,10 @@ export default function TabLayout() {
           // Positionering
           position: "absolute",
           bottom: 25,
-          marginHorizontal: 20,
+
+          marginHorizontal: width > 600 ? "20%" : "5%",
+          width: width > 600 ? "60%" : "90%",
+
           paddingHorizontal: 18,
           paddingTop: 5,
 
@@ -31,6 +43,7 @@ export default function TabLayout() {
           borderRadius: 35,
           height: 70,
           borderTopWidth: 0,
+
           // skugga
           elevation: 5,
           shadowColor: "#000",
@@ -53,6 +66,8 @@ export default function TabLayout() {
                   : require("../../assets/images/icons/Baking.png")
               }
               backgroundColor={require("../../assets/images/icons/Pink.png")}
+              activeBackgroundIpad={activeBackgroundIpad}
+              activeBackgroundMobile={activeBackgroundMobile}
             />
           ),
         }}
@@ -71,6 +86,8 @@ export default function TabLayout() {
                   : require("../../assets/images/icons/Weight.png")
               }
               backgroundColor={require("../../assets/images/icons/green.png")}
+              activeBackgroundIpad={activeBackgroundIpad}
+              activeBackgroundMobile={activeBackgroundMobile}
             />
           ),
         }}
@@ -89,6 +106,8 @@ export default function TabLayout() {
                   : require("../../assets/images/icons/Length.png")
               }
               backgroundColor={require("../../assets/images/icons/blue.png")}
+              activeBackgroundIpad={activeBackgroundIpad}
+              activeBackgroundMobile={activeBackgroundMobile}
             />
           ),
         }}
@@ -107,6 +126,8 @@ export default function TabLayout() {
                   : require("../../assets/images/icons/Currency.png")
               }
               backgroundColor={require("../../assets/images/icons/yellow.png")}
+              activeBackgroundIpad={activeBackgroundIpad}
+              activeBackgroundMobile={activeBackgroundMobile}
             />
           ),
         }}

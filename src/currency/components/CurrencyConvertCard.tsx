@@ -98,6 +98,8 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     backgroundColor: "transparent",
+    maxWidth: 500,
+    alignSelf: "center",
   },
   contentContainer: {
     flexGrow: 1,
